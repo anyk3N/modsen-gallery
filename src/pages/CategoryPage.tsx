@@ -1,7 +1,8 @@
 import React from 'react';
+import HeroSection from '../components/HeroSection/HeroSection';
 
 const CategoryPage = () => {
-  return <div>CategoryPage</div>;
+  return <HeroSection />;
 };
 
 export default CategoryPage;
