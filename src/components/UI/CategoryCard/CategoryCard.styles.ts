@@ -4,7 +4,6 @@ export const ThemeCard = styled.figure`
   position: relative;
   overflow: hidden;
   transition: transform 0.3s;
-  padding: 12px;
   height: 15rem;
 
   &:hover {
