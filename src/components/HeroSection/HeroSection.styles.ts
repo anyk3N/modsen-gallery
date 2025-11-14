@@ -4,7 +4,7 @@ import { colors } from 'styles/Variables';
 
 export const TitleContainer = styled.section`
   width: 100%;
-  height: 45vh;
+  height: clamp(200px, 35vw, 420px);
   background-image: url(${bgImage});
   background-size: cover;
   background-position: center;

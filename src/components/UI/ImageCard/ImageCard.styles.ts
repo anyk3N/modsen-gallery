@@ -6,7 +6,6 @@ export const CardGrid = styled.figure`
   overflow: hidden;
   border: 1px solid #f0f1f1;
   cursor: pointer;
-
   transition: transform 0.3s;
   height: 15rem;
 
