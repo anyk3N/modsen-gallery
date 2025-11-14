@@ -4,10 +4,10 @@ import { colors } from 'styles/Variables';
 
 export const TitleContainer = styled.section`
   width: 100%;
-  height: 45vh; /* высота относительно экрана */
+  height: 45vh;
   background-image: url(${bgImage});
-  background-size: cover; /* масштабирует, сохраняя пропорции */
-  background-position: center; /* центрирует изображение */
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
   display: flex;
   align-items: center;

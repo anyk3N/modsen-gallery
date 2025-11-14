@@ -94,7 +94,6 @@ export const IconLink = styled.li`
   }
 `;
 
-/* Заголовок ссылок */
 export const LinkTitle = styled.h3`
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
@@ -132,7 +131,7 @@ export const LinkList = styled.ul`
     }
   }
   @media (max-width: 420px) {
-    font-size: 15px;
+    display: none;
   }
 `;
 
