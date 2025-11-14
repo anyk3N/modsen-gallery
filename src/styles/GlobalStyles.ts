@@ -36,5 +36,16 @@ export const GlobalStyles = createGlobalStyle`
     select {
         font: inherit;
     }
-    
+    html, body {
+        height: 100%;
+    }
+
+    main {
+        flex: 1 1 auto; 
+    }
+
+    footer {
+        flex-shrink: 0; 
+    }
+
 `;

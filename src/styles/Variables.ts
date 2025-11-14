@@ -7,7 +7,7 @@ export const colors = {
   footerBackground:
     'linear-gradient(90deg, #343333 16.73%, #484848 58.63%, #282828 98.63%)',
   background: '#f8f9fa',
-  text: '#212529',
+  text: '#fffdfa',
 };
 
 export const fonts = {
