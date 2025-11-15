@@ -4,7 +4,6 @@ export const ThemeCard = styled.figure`
   position: relative;
   overflow: hidden;
   transition: transform 0.3s;
-  padding: 12px;
   height: 15rem;
 
   &:hover {
@@ -22,9 +21,9 @@ export const ThemeCard = styled.figure`
     color: white;
     font-size: 20px;
     text-shadow:
-      -1px 1px 2px rgba(0, 0, 0, 0.5),
-      1px 1px 2px rgba(0, 0, 0, 0.5),
-      1px -1px 0 rgba(0, 0, 0, 0.5),
-      -1px -1px 0 rgba(0, 0, 0, 0.5);
+      -1px 1px 2px #00000080,
+      1px 1px 2px #00000080,
+      1px -1px 0 #00000080,
+      -1px -1px 0 #00000080;
   }
 `;

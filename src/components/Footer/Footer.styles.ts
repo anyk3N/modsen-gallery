@@ -132,7 +132,7 @@ export const LinkList = styled.ul`
     }
   }
   @media (max-width: 420px) {
-    font-size: 15px;
+    display: none;
   }
 `;
 
