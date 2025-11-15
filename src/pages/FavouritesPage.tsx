@@ -1,7 +1,8 @@
 import React from 'react';
+import FavoriteList from '../components/FavList/FavoriteList';
 
 const FavouritesPage = () => {
-  return <div>FavouritePage</div>;
+  return <FavoriteList />;
 };
 
 export default FavouritesPage;

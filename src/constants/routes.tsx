@@ -1,6 +1,6 @@
 import React from 'react';
 import CategoryPage from '../pages/CategoryPage';
-import NotFoundPage from '../pages/NotFoundPage';
+import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
 import ImagesPage from '../pages/ImagesPage';
 import FavouritesPage from '../pages/FavouritesPage';
 
