@@ -19,16 +19,23 @@ interface BaseCardProps {
   url: string;
 }
 
+export interface ImageCardProps extends BaseCardProps {
+  title: string;
+}
+
 export interface CategoryCardProps extends BaseCardProps {
   category: string;
 }
 
-export type AsyncCallback<TArgs extends unknown[] = unknown[], TResult = unknown> = (
-  ...args: TArgs
-) => Promise<TResult>;
+export interface SelectorProps {
+  options: {
+    value: string;
+    name: string;
+  }[];
+  defaultValue: string;
+  onSortChange: (value: string) => void;
+}
 
-export type UseFetchingReturn<T extends AsyncCallback> = readonly [
-  (...args: Parameters<T>) => Promise<Awaited<ReturnType<T>> | undefined>,
-  boolean,
-  string,
-];
+export type ImagesListProps = {
+  searchQuery: string;
+};
