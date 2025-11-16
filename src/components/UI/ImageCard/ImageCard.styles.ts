@@ -10,7 +10,8 @@ export const CardGrid = styled.figure`
   height: 15rem;
 
   &:hover {
-    transform: scale(1.03);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
   }
 `;
 
@@ -26,20 +27,30 @@ export const CardImage = styled.img`
 
 export const CardFooter = styled.figcaption`
   display: flex;
+  align-items: flex-start;
   justify-content: space-between;
+  padding: 12px 20px;
 
-  padding: 22px;
-  font-family: 'Lexend Deca', sans-serif;
-  font-size: 16px;
-  height: 26%;
-  width: 100%;
-  color: #111111;
   svg {
     color: ${colors.special};
     //fill: ${colors.special};
     margin-left: 10px;
+    margin-top: 10px;
+    flex-shrink: 0;
   }
+
   p {
-    line-height: 1.1;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 1.3;
+    color: #393939;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+
+    &:first-letter {
+      text-transform: uppercase;
+    }
   }
 `;

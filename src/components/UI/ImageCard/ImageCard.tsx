@@ -1,17 +1,17 @@
 import React from 'react';
 import { CardFooter, CardImage, CardGrid, ImageWrapper } from './ImageCard.styles';
-import image from '../../../assets/bg/background.svg';
-import { FavouriteIcon } from '../../Icons/Icons';
+import { FavouriteIcon } from '../Icons/Icons';
+import { ImageCardProps } from '../../../types/types';
 
-const ImageCard = () => {
+const ImageCard = ({ url, title }: ImageCardProps) => {
   return (
     <CardGrid>
       <ImageWrapper>
-        <CardImage src={image} alt="image" />
+        <CardImage src={url} alt="image" />
       </ImageWrapper>
 
       <CardFooter>
-        <p>Blank</p>
+        <p>{title}</p>
         <FavouriteIcon />
       </CardFooter>
     </CardGrid>

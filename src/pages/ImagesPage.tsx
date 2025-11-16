@@ -1,20 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SearchSec from '../components/SearchSec/SearchSec';
-import { ThemeGrid } from '../components/CategoryList/CategoryList.styles';
-import ImageCard from '../components/UI/ImageCard/ImageCard';
+import ImageList from '../components/ImageList/ImageList';
 
 const ImagesPage = () => {
+  const [searchQuery] = useState('');
+
   return (
     <>
       <SearchSec />
-      <ThemeGrid>
-        <ImageCard />
-        <ImageCard />
-        <ImageCard />
-        <ImageCard />
-        <ImageCard />
-        <ImageCard />
-      </ThemeGrid>
+      <ImageList searchQuery={searchQuery} />
     </>
   );
 };
