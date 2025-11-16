@@ -12,7 +12,7 @@ import {
   SocialIcons,
 } from './Footer.styles';
 import modsen from 'assets/icons/modsen.svg';
-import { FacebookIcon, GitHubIcon, InstagramIcon, TwitterIcon } from '../Icons/Icons';
+import { FacebookIcon, GitHubIcon, InstagramIcon, TwitterIcon } from '../UI/Icons/Icons';
 
 const socialLinks = [
   { icon: <TwitterIcon />, alt: 'twitter' },

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import logo from 'assets/icons/modsen.svg';
 import { HeaderContainer, LogoImage, NavBar } from './Header.styles';
 import NavButton from '../UI/NavButton/NavButton';
-import { CategoryIcon, FavouriteIcon, ImageIcon } from '../Icons/Icons';
+import { CategoryIcon, FavouriteIcon, ImageIcon } from '../UI/Icons/Icons';
 import { BurgerMenu } from '../UI/BurgerMenu/BurgerMenu';
 
 const Header = () => {

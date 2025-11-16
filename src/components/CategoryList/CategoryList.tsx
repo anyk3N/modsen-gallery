@@ -4,7 +4,7 @@ import { ThemeGrid } from './CategoryList.styles';
 import { UnsplashPhoto } from '../../types/types';
 import { fetchCollections } from '../../utils/API/API';
 import { useFetching } from '../../hooks/useFetching';
-import SpinLoader from '../Loader/SpinLoader';
+import SpinLoader from '../UI/Loader/SpinLoader';
 
 const CategoryList = () => {
   const [categories, setCategories] = useState<UnsplashPhoto[]>([]);
