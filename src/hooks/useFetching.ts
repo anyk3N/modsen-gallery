@@ -1,29 +1,22 @@
-import { useState, useCallback } from 'react';
-import type { AsyncCallback, UseFetchingReturn } from 'types/types';
+import { useState } from 'react';
 
-export const useFetching = <T extends AsyncCallback>(
-  callback: T,
-): UseFetchingReturn<T> => {
-  type Result = Awaited<ReturnType<T>>;
-
+export const useFetching = <TArgs extends unknown[], TResult = void>(
+  callback: (...args: TArgs) => Promise<TResult>,
+) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const fetching = useCallback(
-    async (...args: Parameters<T>): Promise<Result | undefined> => {
-      try {
-        setIsLoading(true);
-        setError('');
-        return (await callback(...args)) as Result;
-      } catch (err: unknown) {
-        setError(err instanceof Error ? err.message : String(err ?? 'Unknown error'));
-        return undefined;
-      } finally {
-        setIsLoading(false);
-      }
-    },
-    [callback],
-  );
+  const fetching = async (...args: TArgs): Promise<TResult | void> => {
+    try {
+      setIsLoading(true);
+      setError('');
+      return await callback(...args);
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Unknown error');
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return [fetching, isLoading, error] as const;
 };
