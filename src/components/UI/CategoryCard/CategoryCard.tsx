@@ -1,12 +1,20 @@
 import React from 'react';
 import { ThemeCard } from './CategoryCard.styles';
-import image from 'assets/bg/background.svg';
+import defaultImage from 'assets/icons/defaultImage.svg';
+import { CategoryCardProps } from 'types/types';
+import { useNavigate } from 'react-router-dom';
 
-const CategoryCard = () => {
+const CategoryCard = ({ url, category }: CategoryCardProps) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/images/${category}`);
+  };
+
   return (
-    <ThemeCard>
-      <img src={image} alt="category image" />
-      <figcaption>Blank</figcaption>
+    <ThemeCard onClick={handleClick}>
+      <img src={url || defaultImage} alt="category image" />
+      <figcaption>{category}</figcaption>
     </ThemeCard>
   );
 };
