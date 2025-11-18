@@ -1,10 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import App from 'App';
+import ErrorBoundary from 'components/ErrorBoundary/ErrorBoundary';
+import { ErrorFallback } from 'components/ErrorBoundary/ErrorFallback';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <App />
+    <ErrorBoundary fallback={<ErrorFallback />}>
+      <App />
+    </ErrorBoundary>
   </React.StrictMode>,
 );
