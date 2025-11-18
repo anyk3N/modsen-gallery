@@ -1,20 +1,18 @@
+import { NavBtn, NavLabel } from 'components/UI/NavButton/NavButton.styles';
 import React from 'react';
-import { NavBtn, NavLabel } from './NavButton.styles';
+import { ExtendedNavButtonProps } from 'types/types';
 
-type NavButtonProps = {
-  isActive?: boolean;
-  Icon: React.ComponentType<{ color?: string }>;
-  title: string;
-  to: string;
-};
-
-const NavButton = ({ Icon, to, title }: NavButtonProps) => {
+const NavButton = ({ Icon, title, to, $mobile, onClick }: ExtendedNavButtonProps) => {
   return (
-    <NavBtn to={to}>
+    <NavBtn to={to} $mobile={$mobile} onClick={onClick}>
       {({ isActive }) => (
         <>
-          <Icon color={isActive ? 'red' : 'white'} />
-          <NavLabel color={isActive ? 'red' : 'white'}>{title}</NavLabel>
+          {!$mobile && Icon && (
+            <Icon color={isActive ? '#f17900' : 'white'} fill="none" />
+          )}
+          <NavLabel color={isActive ? '#f17900' : 'white'} $mobile={$mobile}>
+            {title}
+          </NavLabel>
         </>
       )}
     </NavBtn>
