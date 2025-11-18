@@ -7,31 +7,44 @@ import { useFetching } from 'hooks/useFetching';
 
 import { searchSortOptions } from 'constants/sortOptions';
 import type { ImagesListProps, UnsplashPhoto } from 'types/types';
-import { fetchPhotosByCategory } from '../../utils/API/API';
-import { NoPhotoTitle } from './ImageList.styles';
-import ImageCard from '../UI/ImageCard/ImageCard';
-import { ThemeGrid } from '../CategoryList/CategoryList.styles';
-import SpinLoader from '../UI/Loader/SpinLoader';
-
-const perPage = 12;
+import { fetchPhotosByCategory, fetchRandomPhotos } from 'utils/API/API';
+import { ErrorTitle, NoPhotoTitle } from 'components/ImageList/ImageList.styles';
+import ImageCard from 'components/UI/ImageCard/ImageCard';
+import { ThemeGrid } from 'components/CategoryList/CategoryList.styles';
+import SpinLoader from 'components/UI/Loader/SpinLoader';
+import Pagination from 'components/Pagination/Pagination';
+import { useModal } from 'hooks/useModal';
+import ImageModal from 'components/ImageModal/ImageModal';
+import { useFavourites } from 'utils/context/FavouriteContext';
+import { perPage } from 'constants/constants';
 
 const ImagesList = ({ searchQuery }: ImagesListProps) => {
   const { category } = useParams<{ category: string }>();
   const [photos, setPhotos] = useState<UnsplashPhoto[]>([]);
-  const [totalPages, setTotalPages] = useState<number>(100);
-  const [currentPage] = useState(1);
-  const [sort, setSort] = useState<string>('searchSortOptions[0].value');
-  const [fetchPhotos, isLoading, error] = useFetching(
-    async (query: string | undefined, page: number, perPage: number, sort: string) => {
-      const images = query
-        ? await fetchPhotosByCategory(query, page, perPage, sort)
-        : await fetchPhotosByCategory(query, page, perPage, sort);
-      setPhotos(images);
-      setTotalPages(totalPages);
+  const [totalPages, setTotalPages] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [sort, setSort] = useState('searchSortOptions[0].value');
+  const { toggleFavourite, isFavourite } = useFavourites();
+
+  const { modalIndex, openModal, closeModal, handlePrev, handleNext } = useModal(photos);
+
+  const [fetchImages, isLoading, error] = useFetching(
+    async (query: string | undefined, page: number, sort: string) => {
+      let data;
+
+      if (query) {
+        data = await fetchPhotosByCategory(query, page, perPage, sort);
+      } else {
+        data = await fetchRandomPhotos(page, perPage, sort);
+      }
+
+      setPhotos(data.results);
+      setTotalPages(data.totalPages);
     },
   );
+
   useEffect(() => {
-    fetchPhotos(searchQuery || category, currentPage, perPage, sort);
+    fetchImages(searchQuery || category, currentPage, sort);
   }, [searchQuery, category, currentPage, sort]);
 
   return (
@@ -41,25 +54,42 @@ const ImagesList = ({ searchQuery }: ImagesListProps) => {
         defaultValue={searchSortOptions[0].name}
         onSortChange={setSort}
       />
-      {error && <h1>Произошла ошибка {error}</h1>}
+      {error && <ErrorTitle>Произошла ошибка {error}</ErrorTitle>}
       {isLoading && <SpinLoader />}
-
-      {!isLoading && photos.length > 0 && (
+      {!error && photos.length > 0 && (
         <ThemeGrid>
-          {photos.map(photo => (
+          {photos.map((photo, idx) => (
             <ImageCard
               key={photo.id}
               title={photo.alt_description}
               url={photo.urls.regular}
+              onClick={() => openModal(idx)}
+              favClick={() => toggleFavourite(photo)}
+              isActive={isFavourite(photo.id)}
             />
           ))}
         </ThemeGrid>
       )}
-
-      {!isLoading && photos.length === 0 && (
+      {!error && !isLoading && photos.length === 0 && (
         <NoPhotoTitle>
           The search didn&apos;t yield any results, please try <span>again.</span>
         </NoPhotoTitle>
+      )}
+      {!error && totalPages > 1 && (
+        <Pagination
+          totalPages={totalPages}
+          currentPage={currentPage}
+          onPageChange={setCurrentPage}
+        />
+      )}
+      {modalIndex !== null && (
+        <ImageModal
+          photos={photos}
+          currentIndex={modalIndex}
+          onClose={closeModal}
+          onPrev={handlePrev}
+          onNext={handleNext}
+        />
       )}
     </>
   );
