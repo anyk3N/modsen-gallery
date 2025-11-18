@@ -7,8 +7,13 @@ export const ThemeGrid = styled.div<{ $loading?: boolean }>`
   display: grid;
   grid-gap: 15px;
   padding: 0 12px;
-  grid-template-columns: repeat(auto-fit, minmax(285px, max-content));
+  grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
   justify-content: center;
+
   opacity: ${({ $loading }) => ($loading ? 0.5 : 1)};
   transition: opacity 0.3s ease;
+  @media (min-width: 1000px) {
+    grid-template-columns: repeat(auto-fit, minmax(285px, 285px));
+    justify-content: left;
+  }
 `;
