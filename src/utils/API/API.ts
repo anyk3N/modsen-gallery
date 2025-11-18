@@ -9,15 +9,33 @@ export async function fetchCollections(): Promise<UnsplashPhoto[]> {
   return response.json();
 }
 
-export async function fetchPhotosByCategory(
-  category?: string,
+export async function fetchRandomPhotos(
   page = 1,
   perPage = 12,
-  orderBy = 'relevant',
-): Promise<UnsplashPhoto[]> {
+  orderBy: string,
+): Promise<{ results: UnsplashPhoto[]; totalPages: number }> {
+  const response = await fetch(
+    `${apiUrl}/photos?page=${page}&per_page=${perPage}&order_by=${orderBy}&client_id=${apiKey}`,
+  );
+  const data = await response.json();
+  return {
+    results: data,
+    totalPages: 20,
+  };
+}
+
+export async function fetchPhotosByCategory(
+  category: string,
+  page = 1,
+  perPage = 12,
+  orderBy: string,
+): Promise<{ results: UnsplashPhoto[]; totalPages: number }> {
   const response = await fetch(
     `${apiUrl}/search/photos?query=${category}&page=${page}&per_page=${perPage}&order_by=${orderBy}&client_id=${apiKey}`,
   );
   const data = await response.json();
-  return data.results;
+  return {
+    results: data.results,
+    totalPages: data.total_pages,
+  };
 }
