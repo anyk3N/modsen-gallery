@@ -6,8 +6,8 @@ export const TitleContainer = styled.section`
   width: 100%;
   height: clamp(200px, 35vw, 420px);
   background-image: url(${bgImage});
-  background-size: cover; /* масштабирует, сохраняя пропорции */
-  background-position: center; /* центрирует изображение */
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
   display: flex;
   align-items: center;

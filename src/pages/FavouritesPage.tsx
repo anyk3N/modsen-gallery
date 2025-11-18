@@ -1,5 +1,5 @@
 import React from 'react';
-import FavoriteList from '../components/FavList/FavoriteList';
+import FavoriteList from 'components/FavList/FavoriteList';
 
 const FavouritesPage = () => {
   return <FavoriteList />;

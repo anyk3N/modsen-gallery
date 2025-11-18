@@ -94,7 +94,6 @@ export const IconLink = styled.li`
   }
 `;
 
-/* Заголовок ссылок */
 export const LinkTitle = styled.h3`
   font-family: 'Roboto', sans-serif;
   font-weight: 400;

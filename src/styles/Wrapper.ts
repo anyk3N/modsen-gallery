@@ -1,4 +1,3 @@
-// src/components/Wrapper/Wrapper.styles.ts
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`

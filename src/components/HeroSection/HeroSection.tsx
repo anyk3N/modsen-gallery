@@ -1,5 +1,5 @@
 import React from 'react';
-import { Title, TitleContainer } from './HeroSection.styles';
+import { Title, TitleContainer } from 'components/HeroSection/HeroSection.styles';
 
 const HeroSection = () => {
   return (

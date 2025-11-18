@@ -1,4 +1,4 @@
-import { Loader, LoaderWrapper } from './SpinLoader.styles';
+import { Loader, LoaderWrapper } from 'components/UI/Loader/SpinLoader.styles';
 import React from 'react';
 
 const SpinLoader = () => {

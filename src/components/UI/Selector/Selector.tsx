@@ -7,7 +7,7 @@ import {
   SortLabel,
   SortOption,
   SortOptions,
-} from './Selector.styles';
+} from 'components/UI/Selector/Selector.styles';
 
 const Selector = ({ options, defaultValue, onSortChange }: SelectorProps) => {
   const [open, setOpen] = useState(false);

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import CategoryCard from '../UI/CategoryCard/CategoryCard';
-import { ThemeGrid } from './CategoryList.styles';
-import { UnsplashPhoto } from '../../types/types';
-import { fetchCollections } from '../../utils/API/API';
-import { useFetching } from '../../hooks/useFetching';
-import SpinLoader from '../UI/Loader/SpinLoader';
+import CategoryCard from 'components/UI/CategoryCard/CategoryCard';
+import { ThemeGrid } from 'components/CategoryList/CategoryList.styles';
+import { UnsplashPhoto } from 'types/types';
+import { fetchCollections } from 'utils/API/API';
+import { useFetching } from 'hooks/useFetching';
+import SpinLoader from 'components/UI/Loader/SpinLoader';
 
 const CategoryList = () => {
   const [categories, setCategories] = useState<UnsplashPhoto[]>([]);
