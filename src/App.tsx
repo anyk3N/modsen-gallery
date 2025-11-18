@@ -1,13 +1,14 @@
 import React from 'react';
 import { GlobalStyles } from 'styles/GlobalStyles';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Layout from './components/Layout/Layout';
-import { ROUTES } from './constants/routes';
-import { Wrapper } from './styles/Wrapper';
+import Layout from 'components/Layout/Layout';
+import { ROUTES } from 'constants/routes';
+import { Wrapper } from 'styles/Wrapper';
+import { FavouritesProvider } from 'utils/context/FavouriteContext';
 
 function App() {
   return (
-    <>
+    <FavouritesProvider>
       <GlobalStyles />
       <Wrapper>
         <BrowserRouter>
@@ -20,7 +21,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       </Wrapper>
-    </>
+    </FavouritesProvider>
   );
 }
 
