@@ -3,6 +3,7 @@ import { colors } from 'styles/Variables';
 
 export const TitleContainer = styled.div`
   max-width: 909px;
+  min-height: 80vh;
   margin: 40px auto;
   text-align: center;
 `;
