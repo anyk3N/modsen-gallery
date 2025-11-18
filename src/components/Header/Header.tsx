@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from 'assets/icons/modsen.svg';
-import { HeaderContainer, LogoImage, NavBar } from './Header.styles';
-import NavButton from '../UI/NavButton/NavButton';
-import { CategoryIcon, FavouriteIcon, ImageIcon } from '../UI/Icons/Icons';
-import { BurgerMenu } from '../UI/BurgerMenu/BurgerMenu';
+import { HeaderContainer, LogoImage, NavBar } from 'components/Header/Header.styles';
+import NavButton from 'components/UI/NavButton/NavButton';
+import { BurgerMenu } from 'components/UI/BurgerMenu/BurgerMenu';
+import { navLinks } from 'constants/navigationLinks';
 
 const Header = () => {
   return (
@@ -14,10 +14,11 @@ const Header = () => {
       </Link>
 
       <NavBar>
-        <NavButton Icon={CategoryIcon} title={'Category'} to={'/'} />
-        <NavButton Icon={ImageIcon} title={'Images'} to={'/images'} />
-        <NavButton Icon={FavouriteIcon} title={'Favourites'} to={'/favourites'} />
+        {navLinks.map(({ to, Icon, title }) => (
+          <NavButton key={title} Icon={Icon} title={title} to={to} />
+        ))}
       </NavBar>
+
       <BurgerMenu />
     </HeaderContainer>
   );
