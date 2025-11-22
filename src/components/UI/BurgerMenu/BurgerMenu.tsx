@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import { navLinks } from 'constants/navigationLinks';
 import NavButton from 'components/UI/NavButton/NavButton';
 import { socialLinks } from 'constants/socialLinks';
@@ -10,19 +10,24 @@ import {
   NavButtons,
   SocialIcons,
 } from './BurgerMenu.styles';
+import { useClickOutside } from 'hooks/useClickOutside';
+import { useBurgerMenu } from 'hooks/useBurgerMenu';
 
 export const BurgerMenu: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement | null>(null);
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
+  useClickOutside([menuRef, buttonRef], () => setIsOpen(false));
+  const { isOpen, setIsOpen, toggleMenu, closeMenu } = useBurgerMenu();
 
   return (
     <>
-      <BurgerBtn onClick={() => setIsOpen(!isOpen)}>
+      <BurgerBtn ref={buttonRef} onClick={toggleMenu}>
         <span />
         <span />
         <span />
       </BurgerBtn>
 
-      <MobileMenu $isOpen={isOpen}>
+      <MobileMenu ref={menuRef} $isOpen={isOpen}>
         <MobileMenuContent>
           <NavButtons>
             {navLinks.map(({ to, title }) => (
@@ -31,7 +36,7 @@ export const BurgerMenu: React.FC = () => {
                 title={title}
                 to={to}
                 $mobile={true}
-                onClick={() => setIsOpen(false)} // Закрытие меню при клике
+                onClick={closeMenu}
               />
             ))}
           </NavButtons>
