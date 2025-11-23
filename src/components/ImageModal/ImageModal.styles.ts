@@ -70,6 +70,13 @@ export const ArrowButton = styled.button<{ direction?: 'left' | 'right' }>`
 
   left: ${({ direction }) => (direction === 'left' ? '-72px' : 'auto')};
   right: ${({ direction }) => (direction === 'right' ? '-72px' : 'auto')};
+
+  @media (max-width: 850px) {
+    top: 105%;
+    transform: translateY(0);
+    left: ${({ direction }) => (direction === 'left' ? '100px' : 'auto')};
+    right: ${({ direction }) => (direction === 'right' ? '100px' : 'auto')};
+  }
 `;
 
 export const CloseButton = styled.button`
@@ -88,4 +95,8 @@ export const CloseButton = styled.button`
   align-items: center;
   justify-content: center;
   transition: background 0.2s;
+  @media (max-width: 850px) {
+    right: -15px;
+    top: -20px;
+  }
 `;
