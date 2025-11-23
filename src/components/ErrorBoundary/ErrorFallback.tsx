@@ -1,4 +1,4 @@
-import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
+import { NotFoundPage } from 'pages/NotFound';
 import React from 'react';
 
 export const ErrorFallback = () => {
