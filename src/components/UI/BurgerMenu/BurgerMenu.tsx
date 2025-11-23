@@ -11,17 +11,17 @@ import {
   SocialIcons,
 } from './BurgerMenu.styles';
 import { useClickOutside } from 'hooks/useClickOutside';
-import { useBurgerMenu } from 'hooks/useBurgerMenu';
+import { useToggle } from 'hooks/useToggle';
 
 export const BurgerMenu: React.FC = () => {
   const menuRef = useRef<HTMLDivElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   useClickOutside([menuRef, buttonRef], () => setIsOpen(false));
-  const { isOpen, setIsOpen, toggleMenu, closeMenu } = useBurgerMenu();
+  const { isOpen, setIsOpen, toggle, close } = useToggle({ lockScroll: true });
 
   return (
     <>
-      <BurgerBtn ref={buttonRef} onClick={toggleMenu}>
+      <BurgerBtn ref={buttonRef} onClick={toggle}>
         <span />
         <span />
         <span />
@@ -36,7 +36,7 @@ export const BurgerMenu: React.FC = () => {
                 title={title}
                 to={to}
                 $mobile={true}
-                onClick={closeMenu}
+                onClick={close}
               />
             ))}
           </NavButtons>
