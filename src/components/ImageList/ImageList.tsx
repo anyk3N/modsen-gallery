@@ -1,22 +1,19 @@
+import { fetchPhotosByCategory, fetchRandomPhotos } from 'API/API';
+import { ThemeGrid } from 'components/CategoryList/CategoryList.styles';
+import { ErrorTitle, NoPhotoTitle } from 'components/ImageList/ImageList.styles';
+import ImageModal from 'components/ImageModal/ImageModal';
+import Pagination from 'components/Pagination/Pagination';
+import ImageCard from 'components/UI/ImageCard/ImageCard';
+import SpinLoader from 'components/UI/Loader/SpinLoader';
+import Selector from 'components/UI/Selector/Selector';
+import { perPage } from 'constants/constants';
+import { searchSortOptions } from 'constants/sortOptions';
+import { useFetching } from 'hooks/useFetching';
+import { useModal } from 'hooks/useModal';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-
-import Selector from 'components/UI/Selector/Selector';
-
-import { useFetching } from 'hooks/useFetching';
-
-import { searchSortOptions } from 'constants/sortOptions';
 import type { UnsplashPhoto } from 'types/types';
-import { fetchPhotosByCategory, fetchRandomPhotos } from 'API/API';
-import { ErrorTitle, NoPhotoTitle } from 'components/ImageList/ImageList.styles';
-import ImageCard from 'components/UI/ImageCard/ImageCard';
-import { ThemeGrid } from 'components/CategoryList/CategoryList.styles';
-import SpinLoader from 'components/UI/Loader/SpinLoader';
-import Pagination from 'components/Pagination/Pagination';
-import { useModal } from 'hooks/useModal';
-import ImageModal from 'components/ImageModal/ImageModal';
 import { useFavourites } from 'utils/context/FavouriteContext';
-import { perPage } from 'constants/constants';
 
 export type ImagesListProps = {
   searchQuery: string;

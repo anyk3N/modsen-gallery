@@ -1,10 +1,10 @@
-import React from 'react';
-import { Title1, Title2, TitleContainer } from 'components/FavList/FavoriteList.styles';
 import { ThemeGrid } from 'components/CategoryList/CategoryList.styles';
+import { Title1, Title2, TitleContainer } from 'components/FavList/FavoriteList.styles';
+import ImageModal from 'components/ImageModal/ImageModal';
 import ImageCard from 'components/UI/ImageCard/ImageCard';
 import { useModal } from 'hooks/useModal';
+import React from 'react';
 import { useFavourites } from 'utils/context/FavouriteContext';
-import ImageModal from 'components/ImageModal/ImageModal';
 
 const FavoriteList = () => {
   const { favourites, toggleFavourite, isFavourite } = useFavourites();

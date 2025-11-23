@@ -1,5 +1,6 @@
-import { useState, useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import type { UnsplashPhoto } from 'types/types';
+
 import { useToggle } from './useToggle';
 
 export const useModal = (photos: UnsplashPhoto[]) => {

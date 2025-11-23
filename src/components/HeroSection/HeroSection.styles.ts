@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import bgImage from 'assets/bg/background.svg';
+import styled from 'styled-components';
 import { colors } from 'styles/Variables';
 
 export const TitleContainer = styled.section`

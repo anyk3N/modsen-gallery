@@ -1,11 +1,11 @@
-import React from 'react';
 import {
   NotFoundSec,
+  Text,
   TextSpan,
   Title,
   Title2,
-  Text,
 } from 'pages/NotFoundPage/NotFoundPage.styles';
+import React from 'react';
 
 const NotFoundPage = () => {
   return (

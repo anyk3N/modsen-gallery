@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import searchIcon from 'assets/icons/searchIcon.svg';
 import {
   SearchBar,
   SearchBtn,
@@ -6,8 +6,8 @@ import {
   Title,
   TitleContainer,
 } from 'components/SearchSec/SearchSec.styles';
-import searchIcon from 'assets/icons/searchIcon.svg';
 import { MIN_QUERY_LENGTH } from 'constants/constants';
+import React, { useEffect, useState } from 'react';
 
 type SearchBarProps = {
   onSearch: (query: string) => void;

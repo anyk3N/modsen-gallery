@@ -1,11 +1,11 @@
-import React from 'react';
+import { FavouriteIcon } from 'components/UI/Icons/Icons';
 import {
   CardFooter,
-  CardImage,
   CardGrid,
+  CardImage,
   ImageWrapper,
 } from 'components/UI/ImageCard/ImageCard.styles';
-import { FavouriteIcon } from 'components/UI/Icons/Icons';
+import React from 'react';
 
 export interface ImageCardProps {
   url: string;

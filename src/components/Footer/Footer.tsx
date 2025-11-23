@@ -1,4 +1,4 @@
-import React from 'react';
+import modsen from 'assets/icons/modsen.svg';
 import {
   FooterBrand,
   FooterContainer,
@@ -11,8 +11,8 @@ import {
   Logo,
   SocialIcons,
 } from 'components/Footer/Footer.styles';
-import modsen from 'assets/icons/modsen.svg';
 import { footerLinks, socialLinks } from 'constants/socialLinks';
+import React from 'react';
 
 const Footer = () => {
   return (

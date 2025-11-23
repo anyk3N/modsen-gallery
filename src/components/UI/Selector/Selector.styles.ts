@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import arrow from 'assets/icons/sort-arrow.svg';
+import styled from 'styled-components';
 
 export const SortContainer = styled.div`
   max-width: 909px;

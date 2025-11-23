@@ -1,9 +1,9 @@
-import React from 'react';
 import {
   ArrowButton,
   PageButton,
   PaginationWrapper,
 } from 'components/Pagination/Pagination.styles';
+import React from 'react';
 
 export interface PaginationProps {
   currentPage: number;

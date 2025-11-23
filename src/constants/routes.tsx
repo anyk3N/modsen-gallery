@@ -1,8 +1,8 @@
-import React from 'react';
 import CategoryPage from 'pages/CategoryPage';
-import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
-import ImagesPage from 'pages/ImagesPage';
 import FavouritesPage from 'pages/FavouritesPage';
+import ImagesPage from 'pages/ImagesPage';
+import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
+import React from 'react';
 
 export const ROUTES = [
   { path: '/', element: <CategoryPage /> },

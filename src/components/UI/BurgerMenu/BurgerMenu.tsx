@@ -1,7 +1,10 @@
-import React, { useRef } from 'react';
-import { navLinks } from 'constants/navigationLinks';
 import NavButton from 'components/UI/NavButton/NavButton';
+import { navLinks } from 'constants/navigationLinks';
 import { socialLinks } from 'constants/socialLinks';
+import { useClickOutside } from 'hooks/useClickOutside';
+import { useToggle } from 'hooks/useToggle';
+import React, { useRef } from 'react';
+
 import {
   BurgerBtn,
   IconLink,
@@ -10,8 +13,6 @@ import {
   NavButtons,
   SocialIcons,
 } from './BurgerMenu.styles';
-import { useClickOutside } from 'hooks/useClickOutside';
-import { useToggle } from 'hooks/useToggle';
 
 export const BurgerMenu: React.FC = () => {
   const menuRef = useRef<HTMLDivElement | null>(null);

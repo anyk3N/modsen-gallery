@@ -1,7 +1,10 @@
-import React from 'react';
-import type { UnsplashPhoto } from 'types/types';
 import leftArrow from 'assets/icons/left arrow.svg';
 import rightArrow from 'assets/icons/right arrow.svg';
+import { FavouriteIcon } from 'components/UI/Icons/Icons';
+import React from 'react';
+import type { UnsplashPhoto } from 'types/types';
+import { useFavourites } from 'utils/context/FavouriteContext';
+
 import {
   ArrowButton,
   Backdrop,
@@ -10,8 +13,6 @@ import {
   Modal,
   Title,
 } from './ImageModal.styles';
-import { FavouriteIcon } from 'components/UI/Icons/Icons';
-import { useFavourites } from 'utils/context/FavouriteContext';
 
 export interface PhotoModalProps {
   photos: UnsplashPhoto[];

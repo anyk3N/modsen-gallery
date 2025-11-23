@@ -1,5 +1,5 @@
-import type { UnsplashPhoto } from 'types/types';
 import { apiKey, apiUrl } from 'constants/api';
+import type { UnsplashPhoto } from 'types/types';
 
 export async function fetchCollections(): Promise<UnsplashPhoto[]> {
   const response = await fetch(`${apiUrl}/collections?per_page=12&client_id=${apiKey}`);

@@ -1,10 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
 import logo from 'assets/icons/modsen.svg';
 import { HeaderContainer, LogoImage, NavBar } from 'components/Header/Header.styles';
-import NavButton from 'components/UI/NavButton/NavButton';
 import { BurgerMenu } from 'components/UI/BurgerMenu/BurgerMenu';
+import NavButton from 'components/UI/NavButton/NavButton';
 import { navLinks } from 'constants/navigationLinks';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (

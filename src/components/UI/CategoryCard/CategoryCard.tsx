@@ -1,6 +1,6 @@
-import React from 'react';
-import { ThemeCard } from 'components/UI/CategoryCard/CategoryCard.styles';
 import defaultImage from 'assets/icons/defaultImage.svg';
+import { ThemeCard } from 'components/UI/CategoryCard/CategoryCard.styles';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export interface CategoryCardProps {

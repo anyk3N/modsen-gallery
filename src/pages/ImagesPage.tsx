@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import SearchSec from 'components/SearchSec/SearchSec';
 import ImageList from 'components/ImageList/ImageList';
+import SearchSec from 'components/SearchSec/SearchSec';
+import React, { useState } from 'react';
 
 const ImagesPage = () => {
   const [searchQuery, setSearchQuery] = useState('');

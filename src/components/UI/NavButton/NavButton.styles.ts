@@ -1,6 +1,6 @@
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { colors } from 'styles/Variables';
-import { NavLink } from 'react-router-dom';
 
 export const NavBtn = styled(NavLink)<{ isActive?: boolean; $mobile?: boolean }>`
   display: flex;

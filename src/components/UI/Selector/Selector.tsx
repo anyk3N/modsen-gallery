@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import {
   SortButton,
   SortContainer,
@@ -7,6 +6,7 @@ import {
   SortOption,
   SortOptions,
 } from 'components/UI/Selector/Selector.styles';
+import React, { useState } from 'react';
 
 export interface SelectorProps {
   options: {
