@@ -6,7 +6,14 @@ import {
   ImageWrapper,
 } from 'components/UI/ImageCard/ImageCard.styles';
 import { FavouriteIcon } from 'components/UI/Icons/Icons';
-import { ImageCardProps } from 'types/types';
+
+export interface ImageCardProps {
+  url: string;
+  title: string;
+  onClick: () => void;
+  favClick: () => void;
+  isActive: boolean;
+}
 
 const ImageCard = ({ url, title, onClick, favClick, isActive }: ImageCardProps) => {
   const handleFavClick = (e: React.MouseEvent) => {

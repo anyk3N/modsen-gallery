@@ -4,7 +4,12 @@ import {
   PageButton,
   PaginationWrapper,
 } from 'components/Pagination/Pagination.styles';
-import { PaginationProps } from 'types/types';
+
+export interface PaginationProps {
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+}
 
 const Pagination: React.FC<PaginationProps> = ({
   currentPage,

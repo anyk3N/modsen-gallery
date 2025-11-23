@@ -1,11 +1,17 @@
 // context/FavouritesContext.tsx
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import type {
-  UnsplashPhoto,
-  FavouritesContextType,
-  FavouritesProviderProps,
-} from 'types/types';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import type { UnsplashPhoto } from 'types/types';
 import { StorageService } from '../StorageService';
+
+export interface FavouritesProviderProps {
+  children: ReactNode;
+}
+
+export type FavouritesContextType = {
+  favourites: UnsplashPhoto[];
+  toggleFavourite: (photo: UnsplashPhoto) => void;
+  isFavourite: (id: string) => boolean;
+};
 
 const FavouritesContext = createContext<FavouritesContextType | undefined>(undefined);
 const favouritesStorage = new StorageService<UnsplashPhoto[]>('favourites');

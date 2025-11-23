@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import type { SelectorProps } from 'types/types';
 import {
   SortButton,
   SortContainer,
@@ -8,6 +7,15 @@ import {
   SortOption,
   SortOptions,
 } from 'components/UI/Selector/Selector.styles';
+
+export interface SelectorProps {
+  options: {
+    value: string;
+    name: string;
+  }[];
+  defaultValue: string;
+  onSortChange: (value: string) => void;
+}
 
 const Selector = ({ options, defaultValue, onSortChange }: SelectorProps) => {
   const [open, setOpen] = useState(false);

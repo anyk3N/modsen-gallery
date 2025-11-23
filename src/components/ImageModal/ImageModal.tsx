@@ -1,5 +1,5 @@
 import React from 'react';
-import type { PhotoModalProps, UnsplashPhoto } from 'types/types';
+import type { UnsplashPhoto } from 'types/types';
 import leftArrow from 'assets/icons/left arrow.svg';
 import rightArrow from 'assets/icons/right arrow.svg';
 import {
@@ -12,6 +12,14 @@ import {
 } from './ImageModal.styles';
 import { FavouriteIcon } from 'components/UI/Icons/Icons';
 import { useFavourites } from 'utils/context/FavouriteContext';
+
+export interface PhotoModalProps {
+  photos: UnsplashPhoto[];
+  currentIndex: number | null;
+  onClose: () => void;
+  onPrev: () => void;
+  onNext: () => void;
+}
 
 const ImageModal: React.FC<PhotoModalProps> = ({
   photos,
@@ -59,7 +67,7 @@ const ImageModal: React.FC<PhotoModalProps> = ({
           <Title>
             {photo.alt_description}
             <FavouriteIcon
-              fill={isFavourite(photo.id) ? '#f17900' : 'white'} // синхронизация цвета
+              fill={isFavourite(photo.id) ? '#f17900' : 'white'}
               onClick={() => handleToggleFavourite(photo)}
             />
           </Title>

@@ -6,8 +6,8 @@ import Selector from 'components/UI/Selector/Selector';
 import { useFetching } from 'hooks/useFetching';
 
 import { searchSortOptions } from 'constants/sortOptions';
-import type { ImagesListProps, UnsplashPhoto } from 'types/types';
-import { fetchPhotosByCategory, fetchRandomPhotos } from 'utils/API/API';
+import type { UnsplashPhoto } from 'types/types';
+import { fetchPhotosByCategory, fetchRandomPhotos } from 'API/API';
 import { ErrorTitle, NoPhotoTitle } from 'components/ImageList/ImageList.styles';
 import ImageCard from 'components/UI/ImageCard/ImageCard';
 import { ThemeGrid } from 'components/CategoryList/CategoryList.styles';
@@ -17,6 +17,10 @@ import { useModal } from 'hooks/useModal';
 import ImageModal from 'components/ImageModal/ImageModal';
 import { useFavourites } from 'utils/context/FavouriteContext';
 import { perPage } from 'constants/constants';
+
+export type ImagesListProps = {
+  searchQuery: string;
+};
 
 const ImagesList = ({ searchQuery }: ImagesListProps) => {
   const { category } = useParams<{ category: string }>();
