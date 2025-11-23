@@ -16,8 +16,11 @@ const SearchSec = ({ onSearch }: SearchBarProps) => {
     const timeout = setTimeout(() => {
       if (search.trim().length >= MIN_QUERY_LENGTH) {
         onSearch(search.trim());
+        setError('');
+      } else if (search.trim().length > 0) {
+        setError(`Введите минимум ${MIN_QUERY_LENGTH} символов`);
       }
-    }, 500);
+    }, 1000);
 
     return () => clearTimeout(timeout);
   }, [search, onSearch]);
@@ -25,6 +28,10 @@ const SearchSec = ({ onSearch }: SearchBarProps) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    if (search.trim().length < MIN_QUERY_LENGTH) {
+      setError(`Введите минимум ${MIN_QUERY_LENGTH} символов`);
+      return;
+    }
     onSearch(search.trim());
   };
 
@@ -47,7 +54,7 @@ const SearchSec = ({ onSearch }: SearchBarProps) => {
         />
       </S.SearchBar>
 
-      {error && <p>{error}</p>}
+      <S.ErrorMessage>{error}</S.ErrorMessage>
     </S.TitleContainer>
   );
 };
