@@ -2,7 +2,7 @@ import ImageList from 'components/ImageList/ImageList';
 import SearchSec from 'components/SearchSec/SearchSec';
 import React, { useState } from 'react';
 
-const ImagesPage = () => {
+const Index = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
   return (
@@ -13,4 +13,4 @@ const ImagesPage = () => {
   );
 };
 
-export default ImagesPage;
+export default Index;
