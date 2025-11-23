@@ -2,7 +2,7 @@ import React from 'react';
 
 import * as S from './styled';
 
-const Index = () => {
+export const NotFoundPage = () => {
   return (
     <S.NotFoundSec>
       <S.Title>404</S.Title>
@@ -13,5 +13,3 @@ const Index = () => {
     </S.NotFoundSec>
   );
 };
-
-export default Index;

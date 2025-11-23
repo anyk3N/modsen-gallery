@@ -2,7 +2,7 @@ import { CategoryList } from 'components/CategoryList/CategoryList';
 import HeroSection from 'components/HeroSection/HeroSection';
 import React from 'react';
 
-const Index = () => {
+export const CategoryPage = () => {
   return (
     <>
       <HeroSection />
@@ -10,5 +10,3 @@ const Index = () => {
     </>
   );
 };
-
-export default Index;

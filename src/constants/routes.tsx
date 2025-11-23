@@ -1,13 +1,14 @@
-import CategoryPage from 'pages/CategoryPage';
-import FavouritesPage from 'pages/FavouritesPage';
-import ImagesPage from 'pages/ImagesPage';
-import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
+import { CategoryPage } from 'pages/Category';
 import React from 'react';
+
+import { FavouritePage } from '../pages/Favourites';
+import { ImagesPage } from '../pages/Images';
+import { NotFoundPage } from '../pages/NotFound';
 
 export const ROUTES = [
   { path: '/', element: <CategoryPage /> },
   { path: '/images', element: <ImagesPage /> },
   { path: '/images/:category', element: <ImagesPage /> },
-  { path: '/favourites', element: <FavouritesPage /> },
+  { path: '/favourites', element: <FavouritePage /> },
   { path: '*', element: <NotFoundPage /> },
 ];
