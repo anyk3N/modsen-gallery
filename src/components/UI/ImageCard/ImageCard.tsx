@@ -1,6 +1,7 @@
 import { FavouriteIcon } from 'components/UI/Icons/Icons';
-import React, { useState } from 'react';
 import SpinLoader from 'components/UI/Loader/SpinLoader'; // твой спиннер
+import React, { useState } from 'react';
+
 import * as S from './styled';
 
 export interface ImageCardProps {
@@ -20,28 +21,28 @@ const ImageCard = ({ url, title, onClick, favClick, isActive }: ImageCardProps) 
   };
 
   return (
-      <S.CardGrid onClick={onClick}>
-        <S.ImageWrapper>
-          {!loaded && (
-              <S.LoaderWrapper>
-                <SpinLoader />
-              </S.LoaderWrapper>
-          )}
-          <S.CardImage
-              src={url}
-              alt={title}
-              loaded={loaded}
-              onLoad={() => setLoaded(true)}
-          />
-        </S.ImageWrapper>
+    <S.CardGrid onClick={onClick}>
+      <S.ImageWrapper>
+        {!loaded && (
+          <S.LoaderWrapper>
+            <SpinLoader />
+          </S.LoaderWrapper>
+        )}
+        <S.CardImage
+          src={url}
+          alt={title}
+          loaded={loaded}
+          onLoad={() => setLoaded(true)}
+        />
+      </S.ImageWrapper>
 
-        <S.CardFooter>
-          <p>{title}</p>
-          <div onClick={handleFavClick}>
-            <FavouriteIcon fill={isActive ? '#f17900' : 'white'} />
-          </div>
-        </S.CardFooter>
-      </S.CardGrid>
+      <S.CardFooter>
+        <p>{title}</p>
+        <div onClick={handleFavClick}>
+          <FavouriteIcon fill={isActive ? '#f17900' : 'white'} />
+        </div>
+      </S.CardFooter>
+    </S.CardGrid>
   );
 };
 
