@@ -1,11 +1,24 @@
 import { useState, useCallback } from 'react';
 import type { UnsplashPhoto } from 'types/types';
+import { useToggle } from './useToggle';
 
 export const useModal = (photos: UnsplashPhoto[]) => {
+  const { open, close } = useToggle({ lockScroll: true });
   const [modalIndex, setModalIndex] = useState<number | null>(null);
 
-  const openModal = (idx: number) => setModalIndex(idx);
-  const closeModal = () => setModalIndex(null);
+  const openModal = useCallback(
+    (idx: number) => {
+      setModalIndex(idx);
+      open();
+    },
+    [open],
+  );
+
+  const closeModal = useCallback(() => {
+    setModalIndex(null);
+    close();
+  }, [close]);
+
   const handlePrev = useCallback(() => {
     if (modalIndex !== null) {
       setModalIndex((modalIndex - 1 + photos.length) % photos.length);
