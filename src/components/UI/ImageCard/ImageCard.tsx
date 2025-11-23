@@ -31,7 +31,7 @@ const ImageCard = ({ url, title, onClick, favClick, isActive }: ImageCardProps) 
         <S.CardImage
           src={url}
           alt={title}
-          loaded={loaded}
+          $loaded={loaded}
           onLoad={() => setLoaded(true)}
         />
       </S.ImageWrapper>

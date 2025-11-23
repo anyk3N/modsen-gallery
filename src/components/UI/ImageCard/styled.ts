@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { colors } from 'styles/Variables';
 
 interface CardImageProps {
-  loaded: boolean;
+  $loaded: boolean;
 }
 
 export const CardGrid = styled.figure`
@@ -27,7 +27,7 @@ export const CardImage = styled.img<CardImageProps>`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: ${({ loaded }) => (loaded ? 1 : 0)};
+  opacity: ${({ $loaded }) => ($loaded ? 1 : 0)};
 `;
 
 export const CardFooter = styled.figcaption`
