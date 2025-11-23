@@ -1,4 +1,4 @@
-import App from 'App';
+import App from 'components/App/App';
 import ErrorBoundary from 'components/ErrorBoundary/ErrorBoundary';
 import { ErrorFallback } from 'components/ErrorBoundary/ErrorFallback';
 import React from 'react';
