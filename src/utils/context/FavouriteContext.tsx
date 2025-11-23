@@ -1,4 +1,3 @@
-// context/FavouritesContext.tsx
 import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import type { UnsplashPhoto } from 'types/types';
 
