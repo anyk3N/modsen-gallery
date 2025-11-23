@@ -69,10 +69,8 @@ export const SearchBtn = styled.button`
 `;
 
 export const ErrorMessage = styled.p`
-    color: white;
-    text-align: left;
-    margin: 8px;
-    font-size: 14px;
+  color: white;
+  text-align: left;
+  margin: 8px;
+  font-size: 14px;
 `;
-
-
