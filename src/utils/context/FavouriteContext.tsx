@@ -1,24 +1,22 @@
+// context/FavouritesContext.tsx
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import type {
   UnsplashPhoto,
   FavouritesContextType,
   FavouritesProviderProps,
 } from 'types/types';
+import { StorageService } from '../StorageService';
 
 const FavouritesContext = createContext<FavouritesContextType | undefined>(undefined);
+const favouritesStorage = new StorageService<UnsplashPhoto[]>('favourites');
 
 export const FavouritesProvider: React.FC<FavouritesProviderProps> = ({ children }) => {
-  const [favourites, setFavourites] = useState<UnsplashPhoto[]>([]);
+  const [favourites, setFavourites] = useState<UnsplashPhoto[]>(() => {
+    return favouritesStorage.get() || [];
+  });
 
   useEffect(() => {
-    const favFromStorage = localStorage.getItem('favourites');
-    if (favFromStorage) {
-      setFavourites(JSON.parse(favFromStorage));
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('favourites', JSON.stringify(favourites));
+    favouritesStorage.set(favourites);
   }, [favourites]);
 
   const toggleFavourite = (photo: UnsplashPhoto) => {
@@ -38,7 +36,7 @@ export const FavouritesProvider: React.FC<FavouritesProviderProps> = ({ children
   );
 };
 
-export const useFavourites = () => {
+export const useFavourites = (): FavouritesContextType => {
   const context = useContext(FavouritesContext);
   if (!context) {
     throw new Error('useFavourites must be used within a FavouritesProvider');
