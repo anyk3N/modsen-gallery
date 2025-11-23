@@ -1,12 +1,6 @@
-import {
-  SortButton,
-  SortContainer,
-  SortDropdown,
-  SortLabel,
-  SortOption,
-  SortOptions,
-} from 'components/UI/Selector/Selector.styles';
 import React, { useState } from 'react';
+
+import * as S from './styled';
 
 export interface SelectorProps {
   options: {
@@ -28,24 +22,24 @@ const Selector = ({ options, defaultValue, onSortChange }: SelectorProps) => {
   const selectedLabel = options.find(opt => opt.value === selected)?.name || defaultValue;
 
   return (
-    <SortContainer>
-      <SortLabel>Sort by</SortLabel>
-      <SortDropdown>
-        <SortButton type="button" onClick={() => setOpen((prev: boolean) => !prev)}>
+    <S.SortContainer>
+      <S.SortLabel>Sort by</S.SortLabel>
+      <S.SortDropdown>
+        <S.SortButton type="button" onClick={() => setOpen((prev: boolean) => !prev)}>
           {selectedLabel}
-        </SortButton>
-        <SortOptions open={open}>
+        </S.SortButton>
+        <S.SortOptions open={open}>
           {options.map(option => (
-            <SortOption
+            <S.SortOption
               key={option.value}
               onClick={() => handleSelect(option.value)}
               data-value={option.value}>
               {option.name}
-            </SortOption>
+            </S.SortOption>
           ))}
-        </SortOptions>
-      </SortDropdown>
-    </SortContainer>
+        </S.SortOptions>
+      </S.SortDropdown>
+    </S.SortContainer>
   );
 };
 

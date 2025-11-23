@@ -1,11 +1,7 @@
 import { FavouriteIcon } from 'components/UI/Icons/Icons';
-import {
-  CardFooter,
-  CardGrid,
-  CardImage,
-  ImageWrapper,
-} from 'components/UI/ImageCard/ImageCard.styles';
 import React from 'react';
+
+import * as S from './styled';
 
 export interface ImageCardProps {
   url: string;
@@ -22,18 +18,18 @@ const ImageCard = ({ url, title, onClick, favClick, isActive }: ImageCardProps) 
   };
 
   return (
-    <CardGrid onClick={onClick}>
-      <ImageWrapper>
-        <CardImage src={url} alt={title} />
-      </ImageWrapper>
+    <S.CardGrid onClick={onClick}>
+      <S.ImageWrapper>
+        <S.CardImage src={url} alt={title} />
+      </S.ImageWrapper>
 
-      <CardFooter>
+      <S.CardFooter>
         <p>{title}</p>
         <div onClick={handleFavClick}>
           <FavouriteIcon fill={isActive ? '#f17900' : 'white'} />
         </div>
-      </CardFooter>
-    </CardGrid>
+      </S.CardFooter>
+    </S.CardGrid>
   );
 };
 

@@ -1,12 +1,13 @@
 import { fetchCollections } from 'API/API';
-import { ThemeGrid } from 'components/CategoryList/CategoryList.styles';
 import CategoryCard from 'components/UI/CategoryCard/CategoryCard';
 import SpinLoader from 'components/UI/Loader/SpinLoader';
 import { useFetching } from 'hooks/useFetching';
 import React, { useEffect, useState } from 'react';
 import { UnsplashPhoto } from 'types/types';
 
-const CategoryList = () => {
+import * as S from './styled';
+
+export const CategoryList = () => {
   const [categories, setCategories] = useState<UnsplashPhoto[]>([]);
 
   const [fetchCategories, isLoading, error] = useFetching(async () => {
@@ -19,7 +20,7 @@ const CategoryList = () => {
   }, []);
 
   return (
-    <ThemeGrid>
+    <S.ThemeGrid>
       {error && <h1>Произошла ошибка {error}</h1>}
       {isLoading ? (
         <>
@@ -36,8 +37,6 @@ const CategoryList = () => {
           ))}
         </>
       )}
-    </ThemeGrid>
+    </S.ThemeGrid>
   );
 };
-
-export default CategoryList;

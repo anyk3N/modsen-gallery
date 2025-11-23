@@ -1,14 +1,15 @@
-import { Title, TitleContainer } from 'components/HeroSection/HeroSection.styles';
 import React from 'react';
+
+import * as S from './styled';
 
 const HeroSection = () => {
   return (
-    <TitleContainer>
-      <Title>
+    <S.TitleContainer>
+      <S.Title>
         let&apos;s find some <br />
         <span>Images</span> here!
-      </Title>
-    </TitleContainer>
+      </S.Title>
+    </S.TitleContainer>
   );
 };
 

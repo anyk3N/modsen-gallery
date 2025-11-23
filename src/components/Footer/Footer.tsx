@@ -1,54 +1,44 @@
 import modsen from 'assets/icons/modsen.svg';
-import {
-  FooterBrand,
-  FooterContainer,
-  FooterSec,
-  FooterSpan,
-  FooterText,
-  IconLink,
-  LinkList,
-  LinkTitle,
-  Logo,
-  SocialIcons,
-} from 'components/Footer/Footer.styles';
 import { footerLinks, socialLinks } from 'constants/socialLinks';
 import React from 'react';
 
+import * as S from './styled';
+
 const Footer = () => {
   return (
-    <FooterSec>
-      <FooterContainer>
-        <FooterBrand>
-          <Logo href="/">
+    <S.FooterSec>
+      <S.FooterContainer>
+        <S.FooterBrand>
+          <S.Logo href="/">
             <img src={modsen} alt="Modsen image" />
-          </Logo>
-          <FooterText>
+          </S.Logo>
+          <S.FooterText>
             We have images that capture every mood and inspire every vision. From
             breathtaking landscapes to vibrant portraits.
-          </FooterText>
-          <SocialIcons>
+          </S.FooterText>
+          <S.SocialIcons>
             {socialLinks.map(item => (
               <ul key={item.alt}>
-                <IconLink key={item.alt}>{item.icon}</IconLink>
+                <S.IconLink key={item.alt}>{item.icon}</S.IconLink>
               </ul>
             ))}
-          </SocialIcons>
-        </FooterBrand>
+          </S.SocialIcons>
+        </S.FooterBrand>
         {footerLinks.map(column => (
           <div key={column.title}>
-            <LinkTitle>{column.title}</LinkTitle>
-            <LinkList>
+            <S.LinkTitle>{column.title}</S.LinkTitle>
+            <S.LinkList>
               {column.links.map(link => (
                 <li key={link.name}>
                   <a href={link.href}>{link.name}</a>
                 </li>
               ))}
-            </LinkList>
+            </S.LinkList>
           </div>
         ))}
-      </FooterContainer>
-      <FooterSpan>Photo.gallery © 2000-2025, All Rights Reserved</FooterSpan>
-    </FooterSec>
+      </S.FooterContainer>
+      <S.FooterSpan>Modsen.gallery © 2000-2025, All Rights Reserved</S.FooterSpan>
+    </S.FooterSec>
   );
 };
 

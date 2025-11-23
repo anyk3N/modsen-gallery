@@ -5,14 +5,7 @@ import { useClickOutside } from 'hooks/useClickOutside';
 import { useToggle } from 'hooks/useToggle';
 import React, { useRef } from 'react';
 
-import {
-  BurgerBtn,
-  IconLink,
-  MobileMenu,
-  MobileMenuContent,
-  NavButtons,
-  SocialIcons,
-} from './BurgerMenu.styles';
+import * as S from './styled';
 
 export const BurgerMenu: React.FC = () => {
   const menuRef = useRef<HTMLDivElement | null>(null);
@@ -22,15 +15,15 @@ export const BurgerMenu: React.FC = () => {
 
   return (
     <>
-      <BurgerBtn ref={buttonRef} onClick={toggle}>
+      <S.BurgerBtn ref={buttonRef} onClick={toggle}>
         <span />
         <span />
         <span />
-      </BurgerBtn>
+      </S.BurgerBtn>
 
-      <MobileMenu ref={menuRef} $isOpen={isOpen}>
-        <MobileMenuContent>
-          <NavButtons>
+      <S.MobileMenu ref={menuRef} $isOpen={isOpen}>
+        <S.MobileMenuContent>
+          <S.NavButtons>
             {navLinks.map(({ to, title }) => (
               <NavButton
                 key={title}
@@ -40,15 +33,15 @@ export const BurgerMenu: React.FC = () => {
                 onClick={close}
               />
             ))}
-          </NavButtons>
+          </S.NavButtons>
 
-          <SocialIcons>
+          <S.SocialIcons>
             {socialLinks.map(item => (
-              <IconLink key={item.alt}>{item.icon}</IconLink>
+              <S.IconLink key={item.alt}>{item.icon}</S.IconLink>
             ))}
-          </SocialIcons>
-        </MobileMenuContent>
-      </MobileMenu>
+          </S.SocialIcons>
+        </S.MobileMenuContent>
+      </S.MobileMenu>
     </>
   );
 };

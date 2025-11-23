@@ -5,14 +5,7 @@ import React from 'react';
 import type { UnsplashPhoto } from 'types/types';
 import { useFavourites } from 'utils/context/FavouriteContext';
 
-import {
-  ArrowButton,
-  Backdrop,
-  CloseButton,
-  Image,
-  Modal,
-  Title,
-} from './ImageModal.styles';
+import * as S from './styled';
 
 export interface PhotoModalProps {
   photos: UnsplashPhoto[];
@@ -54,27 +47,27 @@ const ImageModal: React.FC<PhotoModalProps> = ({
   };
 
   return (
-    <Backdrop onClick={handleBackdropClick}>
-      <Modal>
-        <CloseButton onClick={onClose}>&times;</CloseButton>
-        <ArrowButton direction={'left'} onClick={onPrev}>
+    <S.Backdrop onClick={handleBackdropClick}>
+      <S.Modal>
+        <S.CloseButton onClick={onClose}>&times;</S.CloseButton>
+        <S.ArrowButton direction={'left'} onClick={onPrev}>
           <img src={leftArrow} alt="prev"></img>
-        </ArrowButton>
-        <Image src={photo.urls.regular} alt={photo.alt_description} />
-        <ArrowButton direction={'right'} onClick={onNext}>
+        </S.ArrowButton>
+        <S.Image src={photo.urls.regular} alt={photo.alt_description} />
+        <S.ArrowButton direction={'right'} onClick={onNext}>
           <img src={rightArrow} alt="next" />
-        </ArrowButton>
+        </S.ArrowButton>
         {photo.alt_description && (
-          <Title>
+          <S.Title>
             {photo.alt_description}
             <FavouriteIcon
               fill={isFavourite(photo.id) ? '#f17900' : 'white'}
               onClick={() => handleToggleFavourite(photo)}
             />
-          </Title>
+          </S.Title>
         )}
-      </Modal>
-    </Backdrop>
+      </S.Modal>
+    </S.Backdrop>
   );
 };
 

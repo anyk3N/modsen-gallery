@@ -1,9 +1,6 @@
-import {
-  ArrowButton,
-  PageButton,
-  PaginationWrapper,
-} from 'components/Pagination/Pagination.styles';
 import React from 'react';
+
+import * as S from './styled';
 
 export interface PaginationProps {
   currentPage: number;
@@ -62,16 +59,16 @@ const Pagination: React.FC<PaginationProps> = ({
   }
 
   return (
-    <PaginationWrapper>
-      <ArrowButton
+    <S.PaginationWrapper>
+      <S.ArrowButton
         disabled={currentPage === 1}
         onClick={() => onPageChange(currentPage - 1)}
         aria-label="Предыдущая страница">
         ←
-      </ArrowButton>
+      </S.ArrowButton>
 
       {visiblePages.map((page, idx) => (
-        <PageButton
+        <S.PageButton
           key={idx}
           $active={page === currentPage}
           $ellipsis={page === '...'}
@@ -80,16 +77,16 @@ const Pagination: React.FC<PaginationProps> = ({
           aria-current={page === currentPage ? 'page' : undefined}
           aria-label={page === '...' ? 'More pages' : `Page ${page}`}>
           {page}
-        </PageButton>
+        </S.PageButton>
       ))}
 
-      <ArrowButton
+      <S.ArrowButton
         disabled={currentPage === totalPages}
         onClick={() => onPageChange(currentPage + 1)}
         aria-label="Следующая страница">
         →
-      </ArrowButton>
-    </PaginationWrapper>
+      </S.ArrowButton>
+    </S.PaginationWrapper>
   );
 };
 

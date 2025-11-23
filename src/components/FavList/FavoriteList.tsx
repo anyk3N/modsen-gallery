@@ -1,10 +1,11 @@
-import { ThemeGrid } from 'components/CategoryList/CategoryList.styles';
-import { Title1, Title2, TitleContainer } from 'components/FavList/FavoriteList.styles';
 import ImageModal from 'components/ImageModal/ImageModal';
 import ImageCard from 'components/UI/ImageCard/ImageCard';
 import { useModal } from 'hooks/useModal';
 import React from 'react';
 import { useFavourites } from 'utils/context/FavouriteContext';
+
+import { ThemeGrid } from '../CategoryList/styled';
+import * as S from './styled';
 
 const FavoriteList = () => {
   const { favourites, toggleFavourite, isFavourite } = useFavourites();
@@ -12,19 +13,19 @@ const FavoriteList = () => {
     useModal(favourites);
 
   return (
-    <TitleContainer>
+    <S.TitleContainer>
       {favourites.length === 0 ? (
-        <Title1>
+        <S.Title1>
           Your <span>favourite </span>
           list <br />
           is empty
-        </Title1>
+        </S.Title1>
       ) : (
         <>
-          <Title2>
+          <S.Title2>
             <p>Saved by you.</p>
             <h2>Your favourite list</h2>
-          </Title2>
+          </S.Title2>
           <ThemeGrid>
             {favourites.map((photo, idx) => (
               <ImageCard
@@ -48,7 +49,7 @@ const FavoriteList = () => {
           )}
         </>
       )}
-    </TitleContainer>
+    </S.TitleContainer>
   );
 };
 

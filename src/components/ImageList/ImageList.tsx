@@ -1,6 +1,5 @@
 import { fetchPhotosByCategory, fetchRandomPhotos } from 'API/API';
-import { ThemeGrid } from 'components/CategoryList/CategoryList.styles';
-import { ErrorTitle, NoPhotoTitle } from 'components/ImageList/ImageList.styles';
+import { ThemeGrid } from 'components/CategoryList/styled';
 import ImageModal from 'components/ImageModal/ImageModal';
 import Pagination from 'components/Pagination/Pagination';
 import ImageCard from 'components/UI/ImageCard/ImageCard';
@@ -14,6 +13,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import type { UnsplashPhoto } from 'types/types';
 import { useFavourites } from 'utils/context/FavouriteContext';
+
+import * as S from './styled';
 
 export type ImagesListProps = {
   searchQuery: string;
@@ -55,7 +56,7 @@ const ImagesList = ({ searchQuery }: ImagesListProps) => {
         defaultValue={searchSortOptions[0].name}
         onSortChange={setSort}
       />
-      {error && <ErrorTitle>Произошла ошибка {error}</ErrorTitle>}
+      {error && <S.ErrorTitle>Произошла ошибка {error}</S.ErrorTitle>}
       {isLoading && <SpinLoader />}
       {!error && photos.length > 0 && (
         <ThemeGrid>
@@ -72,9 +73,9 @@ const ImagesList = ({ searchQuery }: ImagesListProps) => {
         </ThemeGrid>
       )}
       {!error && !isLoading && photos.length === 0 && (
-        <NoPhotoTitle>
+        <S.NoPhotoTitle>
           The search didn&apos;t yield any results, please try <span>again.</span>
-        </NoPhotoTitle>
+        </S.NoPhotoTitle>
       )}
       {!error && totalPages > 1 && (
         <Pagination

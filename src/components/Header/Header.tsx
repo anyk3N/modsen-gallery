@@ -1,26 +1,27 @@
 import logo from 'assets/icons/modsen.svg';
-import { HeaderContainer, LogoImage, NavBar } from 'components/Header/Header.styles';
 import { BurgerMenu } from 'components/UI/BurgerMenu/BurgerMenu';
 import NavButton from 'components/UI/NavButton/NavButton';
 import { navLinks } from 'constants/navigationLinks';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import * as S from './styled';
+
 const Header = () => {
   return (
-    <HeaderContainer>
+    <S.HeaderContainer>
       <Link to="/">
-        <LogoImage src={logo} alt="modsen-logo" />
+        <S.LogoImage src={logo} alt="modsen-logo" />
       </Link>
 
-      <NavBar>
+      <S.NavBar>
         {navLinks.map(({ to, Icon, title }) => (
           <NavButton key={title} Icon={Icon} title={title} to={to} />
         ))}
-      </NavBar>
+      </S.NavBar>
 
       <BurgerMenu />
-    </HeaderContainer>
+    </S.HeaderContainer>
   );
 };
 

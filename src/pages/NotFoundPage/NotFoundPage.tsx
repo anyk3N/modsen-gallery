@@ -1,21 +1,16 @@
-import {
-  NotFoundSec,
-  Text,
-  TextSpan,
-  Title,
-  Title2,
-} from 'pages/NotFoundPage/NotFoundPage.styles';
 import React from 'react';
+
+import * as S from './styled';
 
 const NotFoundPage = () => {
   return (
-    <NotFoundSec>
-      <Title>404</Title>
-      <Title2>NOT FOUND</Title2>
-      <Text>
-        The page was <TextSpan>not found</TextSpan>, please return to the main page.
-      </Text>
-    </NotFoundSec>
+    <S.NotFoundSec>
+      <S.Title>404</S.Title>
+      <S.Title2>NOT FOUND</S.Title2>
+      <S.Text>
+        The page was <S.TextSpan>not found</S.TextSpan>, please return to the main page.
+      </S.Text>
+    </S.NotFoundSec>
   );
 };
 

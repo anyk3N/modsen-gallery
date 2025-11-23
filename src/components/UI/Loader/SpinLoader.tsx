@@ -1,11 +1,12 @@
-import { Loader, LoaderWrapper } from 'components/UI/Loader/SpinLoader.styles';
 import React from 'react';
+
+import * as S from './styled';
 
 const SpinLoader = () => {
   return (
-    <LoaderWrapper>
-      <Loader></Loader>
-    </LoaderWrapper>
+    <S.LoaderWrapper>
+      <S.Loader></S.Loader>
+    </S.LoaderWrapper>
   );
 };
 

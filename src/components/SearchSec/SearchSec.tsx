@@ -1,13 +1,8 @@
 import searchIcon from 'assets/icons/searchIcon.svg';
-import {
-  SearchBar,
-  SearchBtn,
-  SearchInput,
-  Title,
-  TitleContainer,
-} from 'components/SearchSec/SearchSec.styles';
 import { MIN_QUERY_LENGTH } from 'constants/constants';
 import React, { useEffect, useState } from 'react';
+
+import * as S from './styled';
 
 type SearchBarProps = {
   onSearch: (query: string) => void;
@@ -34,26 +29,26 @@ const SearchSec = ({ onSearch }: SearchBarProps) => {
   };
 
   return (
-    <TitleContainer>
-      <Title>
+    <S.TitleContainer>
+      <S.Title>
         let&apos;s find some
         <span> Images</span>
         <br /> here!
-      </Title>
-      <SearchBar onSubmit={handleSubmit}>
-        <SearchBtn>
+      </S.Title>
+      <S.SearchBar onSubmit={handleSubmit}>
+        <S.SearchBtn>
           <img src={searchIcon} alt="search icon" />
-        </SearchBtn>
-        <SearchInput
+        </S.SearchBtn>
+        <S.SearchInput
           type="text"
           placeholder="Search..."
           value={search}
           onChange={e => setSearch(e.target.value)}
         />
-      </SearchBar>
+      </S.SearchBar>
 
       {error && <p>{error}</p>}
-    </TitleContainer>
+    </S.TitleContainer>
   );
 };
 
