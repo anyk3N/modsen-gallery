@@ -58,13 +58,13 @@ const ImageModal: React.FC<PhotoModalProps> = ({
           <img src={rightArrow} alt="next" />
         </S.ArrowButton>
         {photo.alt_description && (
-          <S.Title>
+          <S.ModalTitle>
             {photo.alt_description}
             <FavouriteIcon
               fill={isFavourite(photo.id) ? '#f17900' : 'white'}
               onClick={() => handleToggleFavourite(photo)}
             />
-          </S.Title>
+          </S.ModalTitle>
         )}
       </S.Modal>
     </S.Backdrop>

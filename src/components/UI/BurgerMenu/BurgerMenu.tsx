@@ -35,11 +35,11 @@ export const BurgerMenu: React.FC = () => {
             ))}
           </S.NavButtons>
 
-          <S.SocialIcons>
+          <S.SocialIconsMobile>
             {socialLinks.map(item => (
               <S.IconLink key={item.alt}>{item.icon}</S.IconLink>
             ))}
-          </S.SocialIcons>
+          </S.SocialIconsMobile>
         </S.MobileMenuContent>
       </S.MobileMenu>
     </>
