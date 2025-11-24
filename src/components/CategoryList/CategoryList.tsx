@@ -5,6 +5,7 @@ import { useFetching } from 'hooks/useFetching';
 import React, { useEffect, useState } from 'react';
 import { UnsplashPhoto } from 'types/types';
 
+import { ErrorTitle } from '../ImageList/styled';
 import * as S from './styled';
 
 export const CategoryList = () => {
@@ -21,7 +22,7 @@ export const CategoryList = () => {
 
   return (
     <S.ThemeGrid>
-      {error && <h1>Произошла ошибка {error}</h1>}
+      {error && <ErrorTitle>Произошла ошибка {error}</ErrorTitle>}
       {isLoading ? (
         <>
           <SpinLoader />
