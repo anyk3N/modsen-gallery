@@ -1,6 +1,5 @@
 import bgImage from 'assets/bg/background.svg';
 import styled from 'styled-components';
-import { colors } from 'styles/Variables';
 
 export const TitleContainer = styled.section`
   width: 100%;
@@ -16,12 +15,12 @@ export const TitleContainer = styled.section`
 `;
 
 export const Title = styled.h1`
-  font-family: 'Roboto', sans-serif;
+  font-family: ${props => props.theme.fonts.roboto};
   font-weight: 700;
   font-size: clamp(32px, 6vw, 64px);
   text-transform: capitalize;
   text-align: center;
-  color: ${colors.text};
+  color: ${props => props.theme.colors.textPrimary};
   line-height: 1.2;
   margin-bottom: 20px;
   text-shadow:
@@ -30,7 +29,7 @@ export const Title = styled.h1`
     1px -1px 0 #00000080,
     -1px -1px 0 #00000080;
   span {
-    color: ${colors.special};
+    color: ${props => props.theme.colors.accent};
   }
 `;
 
@@ -52,10 +51,10 @@ export const SearchInput = styled.input`
   border-radius: 8px;
   width: 100%;
   padding-left: 54px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: ${props => props.theme.fonts.montserrat};
   font-weight: 500;
   font-size: 16px;
-  color: #000;
+  color: #000000;
 `;
 
 export const SearchBtn = styled.button`

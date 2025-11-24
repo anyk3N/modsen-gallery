@@ -1,35 +1,34 @@
 import styled from 'styled-components';
-import { colors } from 'styles/Variables';
+import mixins from 'styles/mixins';
 
 export const TitleContainer = styled.div`
-  max-width: 909px;
+  ${mixins.container('909px')}
   min-height: 80vh;
-  margin: 40px auto;
   text-align: center;
 `;
 
 export const Title1 = styled.h2`
-  font-family: 'Lexend Deca', sans-serif;
+  font-family: ${p => p.theme.fonts.lexend};
   font-weight: 700;
   font-size: clamp(32px, 6vw, 64px);
   text-transform: capitalize;
   text-align: center;
-  color: #393939;
+  color: ${p => p.theme.colors.textPrimary};
   line-height: 1.2;
   margin-bottom: 20px;
   span {
-    color: ${colors.special};
+    color: ${p => p.theme.colors.accent};
   }
 `;
 
 export const Title2 = styled.h2`
   margin: 42px auto;
   line-height: 44px;
-  font-family: 'Roboto', sans-serif;
+  font-family: ${p => p.theme.fonts.roboto};
   text-align: center;
-  color: #393939;
+  color: ${p => p.theme.colors.textPrimary};
   font-weight: 400;
   p {
-    color: ${colors.special};
+    color: ${p => p.theme.colors.accent};
   }
 `;

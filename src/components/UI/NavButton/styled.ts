@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { colors } from 'styles/Variables';
+import mixins from 'styles/mixins';
 
 export const NavBtn = styled(NavLink)<{ isActive?: boolean; $mobile?: boolean }>`
   display: flex;
@@ -8,13 +8,11 @@ export const NavBtn = styled(NavLink)<{ isActive?: boolean; $mobile?: boolean }>
   gap: 7px;
   cursor: pointer;
   padding: ${({ $mobile }) => ($mobile ? '12px 20px' : '0')};
-  color: ${colors.primary};
+  color: ${p => p.theme.colors.primary};
   &:hover {
-    color: ${colors.special};
-    transition: transform 0.4s ease;
+    color: ${p => p.theme.colors.accent};
     transform: scale(1.1);
-  }
-  &:hover {
+    ${mixins.transition('transform', '400ms', 'ease')}
     background: ${({ $mobile }) => ($mobile ? 'rgba(255, 255, 255, 0.05)' : 'none')};
   }
 `;

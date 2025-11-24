@@ -1,46 +1,46 @@
 import styled from 'styled-components';
-import { colors } from 'styles/Variables';
+import mixins from 'styles/mixins';
 
 export const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: ${colors.headerBackground};
+  background: ${p => p.theme.colors.headerBg};
   height: 109px;
   padding: 0 100px;
-  @media (max-width: 1024px) {
+  ${({ theme }) => mixins.mqMax(theme, 'lg')} {
     padding: 0 40px;
   }
-  @media (max-width: 767px) {
+  ${({ theme }) => mixins.mqMax(theme, 'md')} {
     padding: 0 20px;
   }
 `;
 
 export const NavBar = styled.nav`
-  font-family: 'Roboto', sans-serif;
+  font-family: ${p => p.theme.fonts.roboto};
   display: flex;
-  color: #ffffff;
+  color: ${p => p.theme.colors.accent};
   gap: 31px;
-  @media (max-width: 1024px) {
+  ${({ theme }) => mixins.mqMax(theme, 'lg')} {
     gap: 20px;
     font-size: 20px;
   }
-  @media (max-width: 767px) {
+  ${({ theme }) => mixins.mqMax(theme, 'md')} {
     display: none;
   }
 `;
 
 export const LogoImage = styled.img`
-  transition: transform 0.4s ease;
+  ${mixins.transition('transform', '400ms')}
   cursor: pointer;
 
   &:hover {
     transform: scale(1.05);
   }
-  @media (max-width: 1024px) {
+  ${({ theme }) => mixins.mqMax(theme, 'lg')} {
     width: 90%;
   }
-  @media (max-width: 767px) {
+  ${({ theme }) => mixins.mqMax(theme, 'md')} {
     width: 85%;
   }
 `;

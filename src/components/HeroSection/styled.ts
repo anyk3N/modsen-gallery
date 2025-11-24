@@ -1,6 +1,5 @@
 import bgImage from 'assets/bg/background.svg';
 import styled from 'styled-components';
-import { colors } from 'styles/Variables';
 
 export const TitleContainer = styled.section`
   width: 100%;
@@ -15,12 +14,12 @@ export const TitleContainer = styled.section`
 `;
 
 export const Title = styled.h1`
-  font-family: 'Roboto', sans-serif;
+  font-family: ${p => p.theme.fonts.roboto};
   font-weight: 700;
   font-size: clamp(48px, 7vw, 96px);
   text-transform: capitalize;
   text-align: center;
-  color: ${colors.text};
+  color: ${p => p.theme.colors.textPrimary};
   margin: 0;
   line-height: 1.2;
   text-shadow:
@@ -29,6 +28,6 @@ export const Title = styled.h1`
     1px -1px 0 #00000080,
     -1px -1px 0 #00000080;
   span {
-    color: ${colors.special};
+    color: ${p => p.theme.colors.accent};
   }
 `;

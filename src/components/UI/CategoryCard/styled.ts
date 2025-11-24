@@ -1,24 +1,25 @@
 import styled from 'styled-components';
+import mixins from 'styles/mixins';
 
 export const ThemeCard = styled.figure`
   position: relative;
   overflow: hidden;
-  transition: transform 0.3s;
+  ${mixins.transition('transform', '300ms')}
   height: 15rem;
 
   &:hover {
     transform: scale(1.03);
   }
+
   img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    ${mixins.imageCover}
   }
+
   figcaption {
     position: absolute;
     bottom: 30px;
     left: 35px;
-    color: white;
+    color: ${p => p.theme.colors.primary};
     font-size: 20px;
     text-shadow:
       -1px 1px 2px #00000080,

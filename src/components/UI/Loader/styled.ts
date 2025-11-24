@@ -8,8 +8,8 @@ export const LoaderWrapper = styled.div`
 `;
 
 export const Loader = styled.div`
-  border: 8px solid #f3f3f3;
-  border-top: 8px solid #f17900;
+  border: 8px solid ${p => p.theme.colors.textPrimary};
+  border-top: 8px solid ${p => p.theme.colors.accent};
   border-radius: 50%;
   width: 64px;
   height: 64px;

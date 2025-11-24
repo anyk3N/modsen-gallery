@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors } from 'styles/Variables';
+import mixins from 'styles/mixins';
 
 interface CardImageProps {
   $loaded: boolean;
@@ -8,9 +8,9 @@ interface CardImageProps {
 export const CardGrid = styled.figure`
   position: relative;
   overflow: hidden;
-  border: 1px solid #f0f1f1;
+  border: 1px solid ${p => p.theme.colors.border};
   cursor: pointer;
-  transition: transform 0.3s;
+  ${mixins.transition('transform, box-shadow', '300ms')}
   height: 15rem;
 
   &:hover {
@@ -23,11 +23,11 @@ export const ImageWrapper = styled.div`
   overflow: hidden;
   height: 74%;
 `;
+
 export const CardImage = styled.img<CardImageProps>`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  ${mixins.imageCover}
   opacity: ${({ $loaded }) => ($loaded ? 1 : 0)};
+  ${mixins.transition('opacity', '250ms', 'ease')}
 `;
 
 export const CardFooter = styled.figcaption`
@@ -37,8 +37,7 @@ export const CardFooter = styled.figcaption`
   padding: 12px 20px;
 
   svg {
-    color: ${colors.special};
-    //fill: ${colors.special};
+    color: ${p => p.theme.colors.accent};
     margin-left: 10px;
     margin-top: 10px;
     flex-shrink: 0;
@@ -48,11 +47,8 @@ export const CardFooter = styled.figcaption`
     font-weight: 500;
     font-size: 17px;
     line-height: 1.3;
-    color: #393939;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    color: ${p => p.theme.colors.textSecondary};
+    ${mixins.ellipsis(2)}
 
     &:first-letter {
       text-transform: uppercase;

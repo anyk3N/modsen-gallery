@@ -1,9 +1,9 @@
 import styled from 'styled-components';
+import mixins from 'styles/mixins';
 
 export const ThemeGrid = styled.div<{ $loading?: boolean }>`
-  max-width: 909px;
+  ${mixins.container('909px')}
   min-height: 80vh;
-  margin: 40px auto;
   display: grid;
   grid-gap: 15px;
   padding: 0 12px;
@@ -11,8 +11,8 @@ export const ThemeGrid = styled.div<{ $loading?: boolean }>`
   justify-content: center;
 
   opacity: ${({ $loading }) => ($loading ? 0.5 : 1)};
-  transition: opacity 0.3s ease;
-  @media (min-width: 1000px) {
+  ${mixins.transition('opacity', '300ms', 'ease')}
+  ${({ theme }) => mixins.mqMin(theme, 'xxl')} {
     grid-template-columns: repeat(auto-fit, minmax(285px, 285px));
     justify-content: left;
   }

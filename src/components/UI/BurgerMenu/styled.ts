@@ -1,9 +1,9 @@
 import styled, { keyframes } from 'styled-components';
-import { colors } from 'styles/Variables';
+import mixins from 'styles/mixins';
 
 export const BurgerBtn = styled.button`
   display: none;
-  @media (max-width: 767px) {
+  ${({ theme }) => mixins.mqMax(theme, 'md')} {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -18,7 +18,7 @@ export const BurgerBtn = styled.button`
       display: block;
       height: 4px;
       width: 100%;
-      background-color: orange;
+      background-color: ${p => p.theme.colors.accent};
       border-radius: 2px;
     }
   }
@@ -31,13 +31,13 @@ export const slideDown = keyframes`
 
 export const MobileMenu = styled.div<{ $isOpen: boolean }>`
   display: none;
-  @media (max-width: 767px) {
+  ${({ theme }) => mixins.mqMax(theme, 'md')} {
     display: ${({ $isOpen }) => ($isOpen ? 'flex' : 'none')};
     position: absolute;
     top: 109px;
     left: 0;
     right: 0;
-    background: ${colors.headerBackground};
+    background: ${p => p.theme.colors.headerBg};
     flex-direction: column;
     align-items: center;
     padding: 20px 0;
@@ -61,7 +61,7 @@ export const NavButtons = styled.div`
   align-items: center;
 `;
 
-export const SocialIcons = styled.ul`
+export const SocialIconsMobile = styled.ul`
   display: flex;
   gap: 15px;
   list-style: none;
@@ -82,9 +82,10 @@ export const IconLink = styled.li`
 
     &:hover {
       transform: scale(1.1);
-      fill: #e0a449;
+      fill: ${p => p.theme.colors.accent};
+
       path {
-        fill: #ffffff;
+        fill: ${p => p.theme.colors.primary};
       }
     }
   }

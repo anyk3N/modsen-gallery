@@ -1,14 +1,10 @@
 import styled from 'styled-components';
+import mixins from 'styles/mixins';
 
 export const Backdrop = styled.div`
-  position: fixed;
-  z-index: 1000;
-  inset: 0;
+  ${mixins.backdrop}
   backdrop-filter: blur(10px);
   background: #a8a8a866;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 export const Modal = styled.div`
@@ -16,7 +12,7 @@ export const Modal = styled.div`
   max-height: 600px;
   height: 86%;
   width: 100%;
-  background: #fff;
+  background: ${p => p.theme.colors.primary};
   box-shadow: 0 8px 32px #00000040;
   position: relative;
   display: flex;
@@ -25,27 +21,23 @@ export const Modal = styled.div`
 `;
 
 export const Image = styled.img`
-  width: 100%;
-  height: 86%;
-  object-fit: cover;
-  display: block;
+  ${mixins.imageCover}
 `;
 
-export const Title = styled.div`
+export const ModalTitle = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: 'Lexend Deca', sans-serif;
+  font-family: ${p => p.theme.fonts.lexend};
   font-weight: 500;
   font-size: 17px;
   height: 14%;
   line-height: 150%;
-  color: #393939;
-  align-content: center;
+  color: ${p => p.theme.colors.textSecondary};
   width: 100%;
   padding: 0 24px;
   svg {
-    stroke: #f17900;
+    stroke: ${p => p.theme.colors.accent};
   }
 `;
 
@@ -53,10 +45,10 @@ export const ArrowButton = styled.button<{ direction?: 'left' | 'right' }>`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: #f17900;
+  background: ${p => p.theme.colors.accent};
   border: none;
   font-size: 40px;
-  color: #fff;
+  color: ${p => p.theme.colors.primary};
   cursor: pointer;
   z-index: 2;
   width: 56px;
@@ -66,12 +58,12 @@ export const ArrowButton = styled.button<{ direction?: 'left' | 'right' }>`
   align-items: center;
   justify-content: center;
   box-shadow: 0 2px 8px #0000001f;
-  transition: background 0.2s;
+  ${mixins.transition('background', '200ms')}
 
   left: ${({ direction }) => (direction === 'left' ? '-72px' : 'auto')};
   right: ${({ direction }) => (direction === 'right' ? '-72px' : 'auto')};
 
-  @media (max-width: 850px) {
+  ${({ theme }) => mixins.mqMax(theme, 850)} {
     top: 105%;
     transform: translateY(0);
     left: ${({ direction }) => (direction === 'left' ? '100px' : 'auto')};
@@ -94,8 +86,8 @@ export const CloseButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s;
-  @media (max-width: 850px) {
+  ${mixins.transition('background', '200ms')}
+  ${({ theme }) => mixins.mqMax(theme, 850)} {
     right: -15px;
     top: -20px;
   }

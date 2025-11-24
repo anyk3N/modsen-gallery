@@ -1,16 +1,18 @@
 import arrow from 'assets/icons/sort-arrow.svg';
 import styled from 'styled-components';
+import mixins from 'styles/mixins';
 
 export const SortContainer = styled.div`
   max-width: 909px;
   display: flex;
   align-items: center;
   gap: 18px;
-  font-family: 'Lexend Deca', sans-serif;
+  font-family: ${p => p.theme.fonts.lexend};
   justify-content: right;
   margin: 0 auto;
   padding: 20px 20px 0 20px;
-  @media (max-width: 600px) {
+
+  ${({ theme }) => mixins.mqMax(theme, 600)} {
     justify-content: center;
   }
 `;
@@ -19,28 +21,30 @@ export const SortLabel = styled.span`
   font-weight: 700;
   font-size: 17px;
   line-height: 150%;
-  color: #393939;
+  color: ${p => p.theme.colors.textSecondary};
 `;
 
 export const SortDropdown = styled.div`
   position: relative;
 `;
+
 export const SortButton = styled.button`
-  background: white;
+  background: ${p => p.theme.colors.primary};
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-size: 14px;
-  transition: all 0.3s;
-  color: #c4c4c4;
-  border: 1px solid #c4c4c4;
+  ${mixins.transition('all', '300ms')}
+  color: ${p => p.theme.colors.divider};
+  border: 1px solid ${p => p.theme.colors.divider};
   border-radius: 16px;
   padding: 16px;
   width: 146px;
   height: 41px;
+
   &:hover {
-    border-color: #999;
+    border-color: ${p => p.theme.colors.hover};
   }
 
   &:after {
@@ -50,15 +54,12 @@ export const SortButton = styled.button`
   }
 `;
 
-interface SortOptionsProps {
-  open: boolean;
-}
-export const SortOptions = styled.div<SortOptionsProps>`
-  display: ${props => (props.open ? 'block' : 'none')};
+export const SortOptions = styled.div<{ open: boolean }>`
+  display: ${p => (p.open ? 'block' : 'none')};
   position: absolute;
   top: 100%;
   left: 0;
-  background: white;
+  background: ${p => p.theme.colors.primary};
   border: 1px solid #ddd;
   border-radius: 10px;
   width: 100%;
@@ -72,7 +73,7 @@ export const SortOption = styled.div`
   cursor: pointer;
   font-size: 14px;
   &:hover {
-    background: #f5f5f5;
+    background: ${p => p.theme.colors.textPrimary};
   }
   &:first-child {
     border-top-left-radius: 10px;

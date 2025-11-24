@@ -6,14 +6,15 @@ export const NoPhotoTitle = styled.div`
   margin: 60px auto;
   padding: 20px;
   max-width: 684px;
-  font-family: 'Lexend Deca', sans-serif;
+  font-family: ${p => p.theme.fonts.lexend};
   font-weight: 700;
   font-size: clamp(32px, 6vw, 64px);
   text-transform: capitalize;
   text-align: center;
-  color: #393939;
+  color: ${p => p.theme.colors.textSecondary};
+
   span {
-    color: #f17900;
+    color: ${p => p.theme.colors.accent};
   }
 `;
 
