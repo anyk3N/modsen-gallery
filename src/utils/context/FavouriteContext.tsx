@@ -9,7 +9,7 @@ import React, {
 } from 'react';
 import type { UnsplashPhoto } from 'types/types';
 
-import { StorageService } from '../StorageService';
+import { StorageService } from '../storage/StorageService';
 
 export interface FavouritesProviderProps {
   children: ReactNode;
