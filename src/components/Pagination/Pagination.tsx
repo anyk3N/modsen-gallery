@@ -1,4 +1,5 @@
-import React from 'react';
+import { usePagination } from 'hooks/usePagination';
+import React, { useCallback } from 'react';
 
 import * as S from './styled';
 
@@ -13,46 +14,24 @@ export const Pagination: React.FC<PaginationProps> = ({
   totalPages,
   onPageChange,
 }) => {
-  const getVisiblePages = (): (number | string)[] => {
-    const pages: (number | string)[] = [];
+  const visiblePages = usePagination(currentPage, totalPages);
 
-    if (totalPages <= 5) {
-      return Array.from({ length: totalPages }, (_, i) => i + 1);
-    }
+  const handlePageClick = useCallback(
+    (page: number | string) => {
+      if (typeof page === 'number') {
+        onPageChange(page);
+      }
+    },
+    [onPageChange],
+  );
 
-    pages.push(1);
+  const handlePrevClick = useCallback(() => {
+    onPageChange(currentPage - 1);
+  }, [onPageChange, currentPage]);
 
-    let startPage = Math.max(2, currentPage - 1);
-    let endPage = Math.min(totalPages - 1, currentPage + 1);
-
-    if (currentPage <= 3) {
-      startPage = 2;
-      endPage = 4;
-    }
-
-    if (currentPage >= totalPages - 2) {
-      startPage = totalPages - 3;
-      endPage = totalPages - 1;
-    }
-
-    if (startPage > 2) {
-      pages.push('...');
-    }
-
-    for (let i = startPage; i <= endPage; i++) {
-      pages.push(i);
-    }
-
-    if (endPage < totalPages - 1) {
-      pages.push('...');
-    }
-
-    pages.push(totalPages);
-
-    return pages;
-  };
-
-  const visiblePages = getVisiblePages();
+  const handleNextClick = useCallback(() => {
+    onPageChange(currentPage + 1);
+  }, [onPageChange, currentPage]);
 
   if (totalPages <= 1) {
     return null;
@@ -62,7 +41,7 @@ export const Pagination: React.FC<PaginationProps> = ({
     <S.PaginationWrapper>
       <S.ArrowButton
         disabled={currentPage === 1}
-        onClick={() => onPageChange(currentPage - 1)}
+        onClick={handlePrevClick}
         aria-label="Предыдущая страница">
         ←
       </S.ArrowButton>
@@ -73,7 +52,7 @@ export const Pagination: React.FC<PaginationProps> = ({
           $active={page === currentPage}
           $ellipsis={page === '...'}
           disabled={page === '...' || page === currentPage}
-          onClick={() => typeof page === 'number' && onPageChange(page)}
+          onClick={() => handlePageClick(page)}
           aria-current={page === currentPage ? 'page' : undefined}
           aria-label={page === '...' ? 'More pages' : `Page ${page}`}>
           {page}
@@ -82,7 +61,7 @@ export const Pagination: React.FC<PaginationProps> = ({
 
       <S.ArrowButton
         disabled={currentPage === totalPages}
-        onClick={() => onPageChange(currentPage + 1)}
+        onClick={handleNextClick}
         aria-label="Следующая страница">
         →
       </S.ArrowButton>
