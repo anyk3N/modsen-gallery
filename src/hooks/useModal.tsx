@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import type { UnsplashPhoto } from 'types/types';
 
 import { useToggle } from './useToggle';
@@ -14,6 +14,13 @@ export const useModal = (photos: UnsplashPhoto[]) => {
     },
     [open],
   );
+
+  useEffect(() => {
+    if (photos.length === 0) {
+      setModalIndex(null);
+      close();
+    }
+  }, [photos.length, close]);
 
   const closeModal = useCallback(() => {
     setModalIndex(null);
