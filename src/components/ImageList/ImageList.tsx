@@ -1,19 +1,16 @@
-import { fetchPhotosByCategory, fetchRandomPhotos } from 'API/API';
 import { ThemeGrid } from 'components/CategoryList/styled';
-import ImageModal from 'components/ImageModal/ImageModal';
-import Pagination from 'components/Pagination/Pagination';
-import ImageCard from 'components/UI/ImageCard/ImageCard';
-import SpinLoader from 'components/UI/Loader/SpinLoader';
-import Selector from 'components/UI/Selector/Selector';
-import { perPage } from 'constants/constants';
+import { ImageCard } from 'components/UI/ImageCard/ImageCard';
+import { SpinLoader } from 'components/UI/Loader/SpinLoader';
+import { Selector } from 'components/UI/Selector/Selector';
 import { searchSortOptions } from 'constants/sortOptions';
-import { useFetching } from 'hooks/useFetching';
 import { useModal } from 'hooks/useModal';
-import React, { useEffect, useState } from 'react';
+import React, { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
-import type { UnsplashPhoto } from 'types/types';
 import { useFavourites } from 'utils/context/FavouriteContext';
 
+import { usePhotos } from '../../hooks/usePhotos';
+import { ImageModal } from '../ImageModal/ImageModal';
+import { Pagination } from '../Pagination/Pagination';
 import * as S from './styled';
 
 export type ImagesListProps = {
@@ -22,32 +19,27 @@ export type ImagesListProps = {
 
 const ImagesList = ({ searchQuery }: ImagesListProps) => {
   const { category } = useParams<{ category: string }>();
-  const [photos, setPhotos] = useState<UnsplashPhoto[]>([]);
-  const [totalPages, setTotalPages] = useState(1);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [sort, setSort] = useState('searchSortOptions[0].value');
+  const { photos, isLoading, error, totalPages, currentPage, setCurrentPage, setSort } =
+    usePhotos(searchQuery, category);
+
   const { toggleFavourite, isFavourite } = useFavourites();
 
   const { modalIndex, openModal, closeModal, handlePrev, handleNext } = useModal(photos);
 
-  const [fetchImages, isLoading, error] = useFetching(
-    async (query: string | undefined, page: number, sort: string) => {
-      let data;
-
-      if (query) {
-        data = await fetchPhotosByCategory(query, page, perPage, sort);
-      } else {
-        data = await fetchRandomPhotos(page, perPage, sort);
-      }
-
-      setPhotos(data.results);
-      setTotalPages(data.totalPages);
-    },
+  const items = useMemo(
+    () =>
+      photos.map((photo, idx) => (
+        <ImageCard
+          key={photo.id}
+          title={photo.alt_description}
+          url={photo.urls.regular}
+          onClick={() => openModal(idx)}
+          favClick={() => toggleFavourite(photo)}
+          isActive={isFavourite(photo.id)}
+        />
+      )),
+    [photos, openModal, toggleFavourite, isFavourite],
   );
-
-  useEffect(() => {
-    fetchImages(searchQuery || category, currentPage, sort);
-  }, [searchQuery, category, currentPage, sort]);
 
   return (
     <>
@@ -58,20 +50,7 @@ const ImagesList = ({ searchQuery }: ImagesListProps) => {
       />
       {error && <S.ErrorTitle>Произошла ошибка {error}</S.ErrorTitle>}
       {isLoading && <SpinLoader />}
-      {!error && photos.length > 0 && (
-        <ThemeGrid>
-          {photos.map((photo, idx) => (
-            <ImageCard
-              key={photo.id}
-              title={photo.alt_description}
-              url={photo.urls.regular}
-              onClick={() => openModal(idx)}
-              favClick={() => toggleFavourite(photo)}
-              isActive={isFavourite(photo.id)}
-            />
-          ))}
-        </ThemeGrid>
-      )}
+      {!error && photos.length > 0 && <ThemeGrid>{items}</ThemeGrid>}
       {!error && !isLoading && photos.length === 0 && (
         <S.NoPhotoTitle>
           The search didn&apos;t yield any results, please try <span>again.</span>
