@@ -1,32 +1,41 @@
 import { FavouriteIcon } from 'components/UI/Icons/Icons';
 import React, { useCallback, useState } from 'react';
+import type { UnsplashPhoto } from 'types/types';
 
 import { SpinLoader } from '../Loader/SpinLoader';
 import * as S from './styled';
 
 export interface ImageCardProps {
   url: string;
-  title: string;
-  onClick: () => void;
-  favClick: () => void;
+  title?: string | null;
+  index: number;
+  photo: UnsplashPhoto;
+  onOpen: (index: number) => void;
+  onToggleFavourite: (photo: UnsplashPhoto) => void;
   isActive: boolean;
 }
 
-export const ImageCard = ({
+const ImageCard: React.FC<ImageCardProps> = ({
   url,
   title,
-  onClick,
-  favClick,
+  index,
+  photo,
+  onOpen,
+  onToggleFavourite,
   isActive,
-}: ImageCardProps) => {
+}) => {
   const [loaded, setLoaded] = useState(false);
+
+  const handleOpen = useCallback(() => {
+    onOpen(index);
+  }, [onOpen, index]);
 
   const handleFavClick = useCallback(
     (e: React.MouseEvent) => {
       e.stopPropagation();
-      favClick();
+      onToggleFavourite(photo);
     },
-    [favClick],
+    [onToggleFavourite, photo],
   );
 
   const handleImageLoad = useCallback(() => {
@@ -34,22 +43,30 @@ export const ImageCard = ({
   }, []);
 
   return (
-    <S.CardGrid onClick={onClick}>
+    <S.CardGrid onClick={handleOpen}>
       <S.ImageWrapper>
         {!loaded && (
           <S.LoaderWrapper>
             <SpinLoader />
           </S.LoaderWrapper>
         )}
-        <S.CardImage src={url} alt={title} $loaded={loaded} onLoad={handleImageLoad} />
+        <S.CardImage
+          src={url}
+          alt={'image'}
+          $loaded={loaded}
+          onLoad={handleImageLoad}
+          loading="lazy"
+        />
       </S.ImageWrapper>
 
       <S.CardFooter>
         <p>{title}</p>
         <div onClick={handleFavClick}>
-          <FavouriteIcon fill={isActive ? '#f17900' : 'white'} />
+          <FavouriteIcon $isActive={isActive} />
         </div>
       </S.CardFooter>
     </S.CardGrid>
   );
 };
+
+export default React.memo(ImageCard);
