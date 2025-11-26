@@ -10,7 +10,7 @@ export const CardGrid = styled.figure`
   overflow: hidden;
   border: 1px solid ${p => p.theme.colors.border};
   cursor: pointer;
-  ${mixins.transition('transform, box-shadow', '300ms')}
+  transition: transform 0.3s;
   height: 15rem;
 
   &:hover {
