@@ -17,8 +17,8 @@ export const ThemeCard = styled.figure`
 
   figcaption {
     position: absolute;
-    bottom: 30px;
-    left: 35px;
+    bottom: 12px;
+    left: 15px;
     color: ${p => p.theme.colors.primary};
     font-size: 20px;
     text-shadow:

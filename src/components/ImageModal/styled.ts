@@ -22,6 +22,7 @@ export const Modal = styled.div`
 
 export const Image = styled.img`
   ${mixins.imageCover}
+  height: 86%;
 `;
 
 export const ModalTitle = styled.div`

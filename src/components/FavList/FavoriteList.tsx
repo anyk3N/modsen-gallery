@@ -24,7 +24,7 @@ const FavoriteList = () => {
         <>
           <S.Title2>
             <p>Saved by you.</p>
-            <h2>Your favourite list</h2>
+            <h1>Your favourite list</h1>
           </S.Title2>
           <ThemeGrid>
             {favourites.map((photo, idx) => (
