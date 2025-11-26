@@ -31,7 +31,7 @@ export interface ExtendedNavButtonProps extends NavButtonProps {
 
 export interface IconsProps {
   color?: string;
-  isActive?: boolean;
+  $isActive?: boolean;
   fill?: string;
   onClick?: () => void;
 }
