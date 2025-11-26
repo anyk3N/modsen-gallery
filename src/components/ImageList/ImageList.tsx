@@ -1,5 +1,4 @@
 import { ThemeGrid } from 'components/CategoryList/styled';
-import { ImageCard } from 'components/UI/ImageCard/ImageCard';
 import { SpinLoader } from 'components/UI/Loader/SpinLoader';
 import { Selector } from 'components/UI/Selector/Selector';
 import { searchSortOptions } from 'constants/sortOptions';
@@ -11,6 +10,7 @@ import { useFavourites } from 'utils/context/FavouriteContext';
 import { usePhotos } from '../../hooks/usePhotos';
 import { ImageModal } from '../ImageModal/ImageModal';
 import { Pagination } from '../Pagination/Pagination';
+import ImageCard from '../UI/ImageCard/ImageCard';
 import * as S from './styled';
 
 export type ImagesListProps = {
@@ -31,10 +31,12 @@ const ImagesList = ({ searchQuery }: ImagesListProps) => {
       photos.map((photo, idx) => (
         <ImageCard
           key={photo.id}
-          title={photo.alt_description}
+          index={idx}
           url={photo.urls.regular}
-          onClick={() => openModal(idx)}
-          favClick={() => toggleFavourite(photo)}
+          title={photo.alt_description}
+          photo={photo}
+          onOpen={openModal}
+          onToggleFavourite={toggleFavourite}
           isActive={isFavourite(photo.id)}
         />
       )),
