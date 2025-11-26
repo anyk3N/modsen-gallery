@@ -1,4 +1,12 @@
-import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import React, {
+  createContext,
+  ReactNode,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import type { UnsplashPhoto } from 'types/types';
 
 import { StorageService } from '../StorageService';
@@ -25,20 +33,28 @@ export const FavouritesProvider: React.FC<FavouritesProviderProps> = ({ children
     favouritesStorage.set(favourites);
   }, [favourites]);
 
-  const toggleFavourite = (photo: UnsplashPhoto) => {
+  const toggleFavourite = useCallback((photo: UnsplashPhoto) => {
     setFavourites(prev =>
       prev.find(item => item.id === photo.id)
         ? prev.filter(item => item.id !== photo.id)
         : [...prev, photo],
     );
-  };
+  }, []);
 
-  const isFavourite = (id: string) => favourites.some(item => item.id === id);
+  const isFavourite = useCallback(
+    (id: string): boolean => {
+      return favourites.some(item => item.id === id);
+    },
+    [favourites],
+  );
+
+  const value = useMemo(
+    () => ({ favourites, toggleFavourite, isFavourite }),
+    [favourites, toggleFavourite, isFavourite],
+  );
 
   return (
-    <FavouritesContext.Provider value={{ favourites, toggleFavourite, isFavourite }}>
-      {children}
-    </FavouritesContext.Provider>
+    <FavouritesContext.Provider value={value}>{children}</FavouritesContext.Provider>
   );
 };
 
