@@ -61,7 +61,7 @@ export const ImageModal: React.FC<PhotoModalProps> = ({
           <S.ModalTitle>
             {photo.alt_description}
             <FavouriteIcon
-              fill={isFavourite(photo.id) ? '#f17900' : 'white'}
+              $isActive={isFavourite(photo.id)}
               onClick={() => handleToggleFavourite(photo)}
             />
           </S.ModalTitle>
