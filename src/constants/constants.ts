@@ -11,3 +11,8 @@ export const MAX_PAGES_TO_SHOW_WITHOUT_ELLIPSIS = 5;
 export const PAGES_AROUND_CURRENT = 1;
 
 export const EDGE_PAGE_THRESHOLD = 3;
+
+export const DIRECTION_LEFT = 'left';
+export const DIRECTION_RIGHT = 'right';
+export const ARROW_PREV = 'prev';
+export const ARROW_NEXT = 'next';

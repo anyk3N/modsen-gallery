@@ -1,6 +1,7 @@
 import leftArrow from 'assets/icons/left arrow.svg';
 import rightArrow from 'assets/icons/right arrow.svg';
 import { FavouriteIcon } from 'components/UI/Icons/Icons';
+import { DIRECTION_LEFT, DIRECTION_RIGHT } from 'constants/constants';
 import React from 'react';
 import type { UnsplashPhoto } from 'types/types';
 import { useFavourites } from 'utils/context/FavouriteContext';
@@ -50,11 +51,11 @@ export const ImageModal: React.FC<PhotoModalProps> = ({
     <S.Backdrop onClick={handleBackdropClick}>
       <S.Modal>
         <S.CloseButton onClick={onClose}>&times;</S.CloseButton>
-        <S.ArrowButton direction={'left'} onClick={onPrev}>
+        <S.ArrowButton direction={DIRECTION_LEFT} onClick={onPrev}>
           <img src={leftArrow} alt="prev"></img>
         </S.ArrowButton>
         <S.Image src={photo.urls.regular} alt={photo.alt_description} />
-        <S.ArrowButton direction={'right'} onClick={onNext}>
+        <S.ArrowButton direction={DIRECTION_RIGHT} onClick={onNext}>
           <img src={rightArrow} alt="next" />
         </S.ArrowButton>
         {photo.alt_description && (
