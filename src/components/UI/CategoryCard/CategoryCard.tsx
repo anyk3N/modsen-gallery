@@ -1,5 +1,5 @@
 import defaultImage from 'assets/icons/defaultImage.svg';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import * as S from './styled';
@@ -9,19 +9,17 @@ export interface CategoryCardProps {
   category: string;
 }
 
-const CategoryCard = ({ url, category }: CategoryCardProps) => {
+export const CategoryCard = ({ url, category }: CategoryCardProps) => {
   const navigate = useNavigate();
 
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     navigate(`/images/${category}`);
-  };
+  }, [navigate, category]);
 
   return (
     <S.ThemeCard onClick={handleClick}>
-      <img src={url || defaultImage} alt="category image" />
+      <img loading="lazy" src={url || defaultImage} alt="category image" />
       <figcaption>{category}</figcaption>
     </S.ThemeCard>
   );
 };
-
-export default CategoryCard;

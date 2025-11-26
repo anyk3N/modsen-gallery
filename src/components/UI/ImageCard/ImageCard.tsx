@@ -1,7 +1,7 @@
 import { FavouriteIcon } from 'components/UI/Icons/Icons';
-import SpinLoader from 'components/UI/Loader/SpinLoader'; // твой спиннер
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
+import { SpinLoader } from '../Loader/SpinLoader';
 import * as S from './styled';
 
 export interface ImageCardProps {
@@ -12,13 +12,26 @@ export interface ImageCardProps {
   isActive: boolean;
 }
 
-const ImageCard = ({ url, title, onClick, favClick, isActive }: ImageCardProps) => {
+export const ImageCard = ({
+  url,
+  title,
+  onClick,
+  favClick,
+  isActive,
+}: ImageCardProps) => {
   const [loaded, setLoaded] = useState(false);
 
-  const handleFavClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    favClick();
-  };
+  const handleFavClick = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      favClick();
+    },
+    [favClick],
+  );
+
+  const handleImageLoad = useCallback(() => {
+    setLoaded(true);
+  }, []);
 
   return (
     <S.CardGrid onClick={onClick}>
@@ -28,12 +41,7 @@ const ImageCard = ({ url, title, onClick, favClick, isActive }: ImageCardProps) 
             <SpinLoader />
           </S.LoaderWrapper>
         )}
-        <S.CardImage
-          src={url}
-          alt={title}
-          $loaded={loaded}
-          onLoad={() => setLoaded(true)}
-        />
+        <S.CardImage src={url} alt={title} $loaded={loaded} onLoad={handleImageLoad} />
       </S.ImageWrapper>
 
       <S.CardFooter>
@@ -45,5 +53,3 @@ const ImageCard = ({ url, title, onClick, favClick, isActive }: ImageCardProps) 
     </S.CardGrid>
   );
 };
-
-export default ImageCard;
