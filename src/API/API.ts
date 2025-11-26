@@ -1,5 +1,6 @@
 import { apiKey, apiUrl } from 'constants/api';
 import type { UnsplashPhoto } from 'types/types';
+import { limitTotalPages } from 'utils/helpers/pagination';
 
 export async function fetchCollections(): Promise<UnsplashPhoto[]> {
   const response = await fetch(`${apiUrl}/collections?per_page=12&client_id=${apiKey}`);
@@ -36,6 +37,6 @@ export async function fetchPhotosByCategory(
   const data = await response.json();
   return {
     results: data.results,
-    totalPages: data.total_pages,
+    totalPages: limitTotalPages(data.total_pages),
   };
 }
