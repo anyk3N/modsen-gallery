@@ -1,6 +1,8 @@
 import searchIcon from 'assets/icons/searchIcon.svg';
 import { MIN_QUERY_LENGTH } from 'constants/constants';
-import React, { useEffect, useState } from 'react';
+import { useDebounceSearch } from 'hooks/useDebounce';
+import React, { useCallback, useState } from 'react';
+import { isValidQuery } from 'utils/helpers/validation';
 
 import * as S from './styled';
 
@@ -10,30 +12,24 @@ type SearchBarProps = {
 
 const SearchSec = ({ onSearch }: SearchBarProps) => {
   const [search, setSearch] = useState('');
-  const [error, setError] = useState('');
+  const { error, setError } = useDebounceSearch({ onSearch, query: search });
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (search.trim().length >= MIN_QUERY_LENGTH) {
-        onSearch(search.trim());
-        setError('');
-      } else if (search.trim().length > 0) {
+  const handleSubmit = useCallback(
+    (e: React.FormEvent) => {
+      e.preventDefault();
+      setError('');
+      if (!isValidQuery(search)) {
         setError(`Введите минимум ${MIN_QUERY_LENGTH} символов`);
+        return;
       }
-    }, 1000);
+      onSearch(search.trim());
+    },
+    [search, onSearch, setError],
+  );
 
-    return () => clearTimeout(timeout);
-  }, [search, onSearch]);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setError('');
-    if (search.trim().length < MIN_QUERY_LENGTH) {
-      setError(`Введите минимум ${MIN_QUERY_LENGTH} символов`);
-      return;
-    }
-    onSearch(search.trim());
-  };
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  }, []);
 
   return (
     <S.TitleContainer>
@@ -50,7 +46,7 @@ const SearchSec = ({ onSearch }: SearchBarProps) => {
           type="text"
           placeholder="Search..."
           value={search}
-          onChange={e => setSearch(e.target.value)}
+          onChange={handleInputChange}
         />
       </S.SearchBar>
 
@@ -59,4 +55,4 @@ const SearchSec = ({ onSearch }: SearchBarProps) => {
   );
 };
 
-export default SearchSec;
+export default React.memo(SearchSec);

@@ -72,4 +72,5 @@ export const ErrorMessage = styled.p`
   text-align: left;
   margin: 8px;
   font-size: 14px;
+  min-height: 21px;
 `;
