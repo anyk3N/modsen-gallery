@@ -11,7 +11,7 @@ export interface SelectorProps {
   onSortChange: (value: string) => void;
 }
 
-const Selector = ({ options, defaultValue, onSortChange }: SelectorProps) => {
+export const Selector = ({ options, defaultValue, onSortChange }: SelectorProps) => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<string>('');
   const handleSelect = (value: string) => {
@@ -42,5 +42,3 @@ const Selector = ({ options, defaultValue, onSortChange }: SelectorProps) => {
     </S.SortContainer>
   );
 };
-
-export default Selector;

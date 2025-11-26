@@ -15,7 +15,7 @@ export interface PhotoModalProps {
   onNext: () => void;
 }
 
-const ImageModal: React.FC<PhotoModalProps> = ({
+export const ImageModal: React.FC<PhotoModalProps> = ({
   photos,
   currentIndex,
   onClose,
@@ -70,5 +70,3 @@ const ImageModal: React.FC<PhotoModalProps> = ({
     </S.Backdrop>
   );
 };
-
-export default ImageModal;

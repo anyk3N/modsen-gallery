@@ -3,7 +3,13 @@ import { ExtendedNavButtonProps } from 'types/types';
 
 import * as S from './styled';
 
-const NavButton = ({ Icon, title, to, $mobile, onClick }: ExtendedNavButtonProps) => {
+export const NavButton = ({
+  Icon,
+  title,
+  to,
+  $mobile,
+  onClick,
+}: ExtendedNavButtonProps) => {
   return (
     <S.NavBtn to={to} $mobile={$mobile} onClick={onClick}>
       {({ isActive }) => (
@@ -19,5 +25,3 @@ const NavButton = ({ Icon, title, to, $mobile, onClick }: ExtendedNavButtonProps
     </S.NavBtn>
   );
 };
-
-export default NavButton;
