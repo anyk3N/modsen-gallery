@@ -1,4 +1,4 @@
-import NavButton from 'components/UI/NavButton/NavButton';
+import { NavButton } from 'components/UI/NavButton/NavButton';
 import { navLinks } from 'constants/navigationLinks';
 import { socialLinks } from 'constants/socialLinks';
 import { useClickOutside } from 'hooks/useClickOutside';

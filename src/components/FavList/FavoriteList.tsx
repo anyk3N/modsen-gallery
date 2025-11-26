@@ -1,5 +1,5 @@
-import ImageModal from 'components/ImageModal/ImageModal';
-import ImageCard from 'components/UI/ImageCard/ImageCard';
+import { ImageModal } from 'components/ImageModal/ImageModal';
+import { ImageCard } from 'components/UI/ImageCard/ImageCard';
 import { useModal } from 'hooks/useModal';
 import React from 'react';
 import { useFavourites } from 'utils/context/FavouriteContext';

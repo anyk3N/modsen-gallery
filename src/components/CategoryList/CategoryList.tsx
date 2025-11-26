@@ -1,6 +1,6 @@
 import { fetchCollections } from 'API/API';
-import CategoryCard from 'components/UI/CategoryCard/CategoryCard';
-import SpinLoader from 'components/UI/Loader/SpinLoader';
+import { CategoryCard } from 'components/UI/CategoryCard/CategoryCard';
+import { SpinLoader } from 'components/UI/Loader/SpinLoader';
 import { useFetching } from 'hooks/useFetching';
 import React, { useEffect, useState } from 'react';
 import { UnsplashPhoto } from 'types/types';
