@@ -43,6 +43,38 @@ const ImagesList = ({ searchQuery }: ImagesListProps) => {
     [photos, openModal, toggleFavourite, isFavourite],
   );
 
+  const renderContent = () => {
+    if (error) {
+      return <S.ErrorTitle>Произошла ошибка {error}</S.ErrorTitle>;
+    }
+
+    if (isLoading) {
+      return <SpinLoader />;
+    }
+
+    if (photos.length === 0) {
+      return (
+        <S.NoPhotoTitle>
+          The search didn&apos;t yield any results, please try <span>again.</span>
+        </S.NoPhotoTitle>
+      );
+    }
+
+    return (
+      <>
+        <ThemeGrid>{items}</ThemeGrid>
+
+        {totalPages > 1 && (
+          <Pagination
+            totalPages={totalPages}
+            currentPage={currentPage}
+            onPageChange={setCurrentPage}
+          />
+        )}
+      </>
+    );
+  };
+
   return (
     <>
       <Selector
@@ -50,21 +82,7 @@ const ImagesList = ({ searchQuery }: ImagesListProps) => {
         defaultValue={searchSortOptions[0].name}
         onSortChange={setSort}
       />
-      {error && <S.ErrorTitle>Произошла ошибка {error}</S.ErrorTitle>}
-      {isLoading && <SpinLoader />}
-      {!error && photos.length > 0 && <ThemeGrid>{items}</ThemeGrid>}
-      {!error && !isLoading && photos.length === 0 && (
-        <S.NoPhotoTitle>
-          The search didn&apos;t yield any results, please try <span>again.</span>
-        </S.NoPhotoTitle>
-      )}
-      {!error && totalPages > 1 && (
-        <Pagination
-          totalPages={totalPages}
-          currentPage={currentPage}
-          onPageChange={setCurrentPage}
-        />
-      )}
+      {renderContent()}
       {modalIndex !== null && (
         <ImageModal
           photos={photos}
