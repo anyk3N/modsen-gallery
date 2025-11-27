@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 import * as S from './styled';
 
-const Header = () => {
+export const Header = () => {
   return (
     <S.HeaderContainer>
       <Link to="/">
@@ -24,5 +24,3 @@ const Header = () => {
     </S.HeaderContainer>
   );
 };
-
-export default Header;

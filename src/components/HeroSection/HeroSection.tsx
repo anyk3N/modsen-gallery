@@ -2,7 +2,7 @@ import React from 'react';
 
 import * as S from './styled';
 
-const HeroSection = () => {
+export const HeroSection = () => {
   return (
     <S.TitleContainer>
       <S.Title>
@@ -12,5 +12,3 @@ const HeroSection = () => {
     </S.TitleContainer>
   );
 };
-
-export default HeroSection;

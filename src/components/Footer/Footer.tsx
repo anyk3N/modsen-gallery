@@ -4,7 +4,7 @@ import React from 'react';
 
 import * as S from './styled';
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <S.FooterSec>
       <S.FooterContainer>
@@ -41,5 +41,3 @@ const Footer = () => {
     </S.FooterSec>
   );
 };
-
-export default Footer;

@@ -1,16 +1,16 @@
 import { ThemeGrid } from 'components/CategoryList/styled';
+import { ImageModal } from 'components/ImageModal/ImageModal';
+import { Pagination } from 'components/Pagination/Pagination';
+import ImageCard from 'components/UI/ImageCard/ImageCard';
 import { SpinLoader } from 'components/UI/Loader/SpinLoader';
 import { Selector } from 'components/UI/Selector/Selector';
 import { searchSortOptions } from 'constants/sortOptions';
 import { useModal } from 'hooks/useModal';
+import { usePhotos } from 'hooks/usePhotos';
 import React, { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useFavourites } from 'utils/context/FavouriteContext';
 
-import { usePhotos } from '../../hooks/usePhotos';
-import { ImageModal } from '../ImageModal/ImageModal';
-import { Pagination } from '../Pagination/Pagination';
-import ImageCard from '../UI/ImageCard/ImageCard';
 import * as S from './styled';
 
 export type ImagesListProps = {

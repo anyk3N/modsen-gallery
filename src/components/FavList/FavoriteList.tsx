@@ -1,10 +1,10 @@
 import { ImageModal } from 'components/ImageModal/ImageModal';
+import ImageCard from 'components/UI/ImageCard/ImageCard';
 import { useModal } from 'hooks/useModal';
 import React from 'react';
 import { useFavourites } from 'utils/context/FavouriteContext';
 
 import { ThemeGrid } from '../CategoryList/styled';
-import ImageCard from '../UI/ImageCard/ImageCard';
 import * as S from './styled';
 
 const FavoriteList = () => {
