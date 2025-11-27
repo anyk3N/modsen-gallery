@@ -21,7 +21,7 @@ export const usePhotos = (searchQuery?: string, category?: string): UsePhotosRes
   const [photos, setPhotos] = useState<UnsplashPhoto[]>([]);
   const [totalPages, setTotalPages] = useState<number>(1);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [sort, setSort] = useState<string>('relevant'); // дефолтное значение
+  const [sort, setSort] = useState<string>('relevant');
 
   const loadCallback = useCallback(
     async (query: string | undefined, page: number, sortBy: string) => {

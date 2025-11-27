@@ -1,5 +1,3 @@
-// hooks/usePaginationDisplay.ts
-
 import { useMemo } from 'react';
 import { generateVisiblePages } from 'utils/helpers/pagination';
 
